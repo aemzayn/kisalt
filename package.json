@@ -1,20 +1,38 @@
 {
+  "name": "kisalt",
+  "description": "URL Shortener app",
   "private": true,
+  "author": "Ahmad Muslih Zain",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "check-types": "tsc --pretty --noEmit",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "format": "prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@heroicons/react": "^1.0.5",
+    "@supabase/supabase-js": "^1.30.3",
+    "@supabase/ui": "^0.36.4",
+    "@tailwindcss/forms": "^0.4.0",
+    "clsx": "^1.1.1",
+    "next": "^12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "typescript": "4.0"
+    "eslint": "^8.9.0",
+    "eslint-config-next": "^12.1.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.5.5"
   }
 }

@@ -4,7 +4,11 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
-}
+export type Link = {
+  id: number;
+  name: string;
+  created_at: string;
+  url: string;
+  user: string;
+  clicks: number;
+};
