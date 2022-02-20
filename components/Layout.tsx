@@ -7,10 +7,8 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <div className="min-h-screen">
-      <div className="container max-w-2xl mx-auto">
-        <Header />
-        {children}
-      </div>
+      <Header />
+      {children}
     </div>
   );
 }
