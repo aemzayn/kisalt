@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .h-hero {
+    height: calc(100vh - 104px);
+  }
+}

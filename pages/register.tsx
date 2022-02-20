@@ -1,17 +1,18 @@
-import Head from "next/head";
-import Link from "next/link";
-import { Formik, Field, Form, FormikHelpers } from "formik";
 import Container from "components/Container";
 import Layout from "components/Layout";
+import { Formik, FormikHelpers, Form, Field } from "formik";
+import Head from "next/head";
+import Link from "next/link";
 
 type Props = {};
 
 interface FormValues {
   email: string;
+  fullName: string;
   password: string;
 }
 
-export default function Login({}: Props) {
+export default function Register({}: Props) {
   return (
     <Layout>
       <Head>
@@ -21,14 +22,12 @@ export default function Login({}: Props) {
         <Container height="full">
           <div className="h-full flex flex-col items-center justify-center">
             <div className="text-center">
-              <h1 className="text-3xl font-bold pb-2">
-                Sign in to your account
-              </h1>
-              <p>Login to manage your account</p>
+              <h1 className="text-3xl font-bold">Create new account</h1>
             </div>
             <Formik
               initialValues={{
                 email: "",
+                fullName: "",
                 password: "",
               }}
               onSubmit={(
@@ -36,9 +35,21 @@ export default function Login({}: Props) {
                 { setSubmitting }: FormikHelpers<FormValues>
               ) => {
                 console.log(values);
+                alert(JSON.stringify(values));
               }}
             >
-              <Form className="flex flex-col p-10 rounded-lg shadow-lg gap-5 bg-white mt-10">
+              <Form className="flex flex-col p-10 rounded-lg shadow-lg gap-5 bg-white mt-5">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="fullName">Full Name</label>
+                  <Field
+                    className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                    type="text"
+                    name="fullName"
+                    id="fullName"
+                    placeholder="John Deo"
+                    required
+                  />
+                </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="email">Email address</label>
                   <Field
@@ -50,6 +61,7 @@ export default function Login({}: Props) {
                     required
                   />
                 </div>
+
                 <div className="flex flex-col gap-2">
                   <label htmlFor="password">Password</label>
                   <Field
@@ -80,7 +92,7 @@ export default function Login({}: Props) {
                   type="submit"
                   className="py-2 bg-violet-900 text-violet-50 rounded-md"
                 >
-                  Login
+                  Sign Up
                 </button>
                 <div className="relative flex -my-2 items-center">
                   <div className="flex-grow border-t border-gray-300" />

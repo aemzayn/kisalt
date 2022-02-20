@@ -1,13 +1,18 @@
 import Image from "next/image";
+import { useRef, useEffect } from "react";
 import Container from "./Container";
 
 type Props = {};
 
 export default function Hero({}: Props) {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   return (
     <section
       id="hero-section"
-      className="bg-gradient-to-b lg:h-[calc(100vh-104px)] from-violet-200 to-violet-100"
+      className="lg:h-hero bg-gradient-to-b  from-violet-200 to-violet-100"
     >
       <Container height="full">
         <div className="flex flex-col md:flex-row lg:px-2 h-full">
@@ -28,6 +33,7 @@ export default function Hero({}: Props) {
             </p>
             <div className="bg-white py-2 px-3 rounded-full ring-2 ring-violet-300">
               <input
+                ref={inputRef}
                 type="url"
                 className="border-none placeholder:text-sm placeholder:text-violet-500 focus:ring-0"
                 placeholder="Paste long link"

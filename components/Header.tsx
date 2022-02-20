@@ -31,10 +31,12 @@ export default function Header({}: Props) {
         <nav className="hidden md:flex items-center gap-8 ">
           <NavLink href="/">About</NavLink>
           <NavLink href="/">How it works</NavLink>
-          <NavLink href="/">Sign up</NavLink>
-          <button className="bg-violet-800 px-5 py-2 text-violet-50 rounded-full hover:bg-opacity-90 duration-75">
-            Login
-          </button>
+          <NavLink href="/register">Sign up</NavLink>
+          <Link href="/login">
+            <a className="bg-violet-800 px-5 py-2 text-violet-50 rounded-full hover:bg-opacity-90 duration-75">
+              Login
+            </a>
+          </Link>
         </nav>
 
         <button className="md:hidden p-2 rounded-full bg-violet-200">
