@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import Container from "components/Container";
 import Layout from "components/Layout";
+import { object, string } from "yup";
+import clsx from "clsx";
 
 type Props = {};
 
@@ -10,6 +12,16 @@ interface FormValues {
   email: string;
   password: string;
 }
+
+const loginValidationScheme = object().shape({
+  email: string().email("Invalid email").required("Email is required"),
+  password: string()
+    .min(6, "Must be at least 6 characters")
+    .required("Password cannot be empty."),
+});
+
+// TODO: Implement login
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Login({}: Props) {
   return (
@@ -33,64 +45,99 @@ export default function Login({}: Props) {
               }}
               onSubmit={(
                 values: FormValues,
-                { setSubmitting }: FormikHelpers<FormValues>
+                {
+                  setTouched,
+                  setSubmitting,
+                  setValues,
+                }: FormikHelpers<FormValues>
               ) => {
-                console.log(values);
+                sleep(500)
+                  .then(() => {
+                    alert(JSON.stringify(values));
+                    setValues({
+                      email: "",
+                      password: "",
+                    });
+                    setTouched({
+                      email: false,
+                      password: false,
+                    });
+                  })
+                  .finally(() => {
+                    setSubmitting(false);
+                  });
               }}
+              validationSchema={loginValidationScheme}
             >
-              <Form className="flex flex-col p-10 rounded-lg shadow-lg gap-5 bg-white mt-10">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="email">Email address</label>
-                  <Field
-                    className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="john@example.com"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="password">Password</label>
-                  <Field
-                    className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
-                    type="password"
-                    name="password"
-                    id="password"
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="rounded form-checkbox"
-                      name="remember"
-                      id="remember"
+              {({ errors, touched, isSubmitting }) => (
+                <Form className="flex flex-col p-10 rounded-lg shadow-lg gap-5 bg-white mt-10">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="email">Email address</label>
+                    <Field
+                      className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="john@example.com"
+                      required
                     />
-                    <label htmlFor="remember">Remember me</label>
+                    {errors.email && touched.email && (
+                      <p className="text-red-500">{errors.email}</p>
+                    )}
                   </div>
-                  <Link href="/">
-                    <a className="font-medium text-violet-700 hover:text-violet-500">
-                      Forgot your password?
-                    </a>
-                  </Link>
-                </div>
-                <button
-                  type="submit"
-                  className="py-2 bg-violet-900 text-violet-50 rounded-md"
-                >
-                  Login
-                </button>
-                <div className="relative flex -my-2 items-center">
-                  <div className="flex-grow border-t border-gray-300" />
-                  <span className="flex-shrink mx-4 text-gray-400">or</span>
-                  <div className="flex-grow border-t border-gray-300" />
-                </div>
-                <button className="py-2 border-2 hover:bg-gray-100 bg-white text-gray-600 rounded-md duration-200">
-                  Google
-                </button>
-              </Form>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="password">Password</label>
+                    <Field
+                      className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      type="password"
+                      name="password"
+                      id="password"
+                      required
+                    />
+                    {errors.password && touched.password && (
+                      <p className="text-red-500">{errors.password}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        className="rounded form-checkbox"
+                        name="remember"
+                        id="remember"
+                      />
+                      <label htmlFor="remember">Remember me</label>
+                    </div>
+                    <Link href="/">
+                      <a className="font-medium text-violet-700 hover:text-violet-500">
+                        Forgot your password?
+                      </a>
+                    </Link>
+                  </div>
+                  <button
+                    type="submit"
+                    className={clsx(
+                      "py-2 bg-violet-900 text-violet-50 rounded-md disabled:bg-violet-400",
+                      !isSubmitting ? "cursor-pointer" : "cursor-not-allowed"
+                    )}
+                    disabled={isSubmitting}
+                  >
+                    Login
+                  </button>
+                  <div className="relative flex -my-2 items-center">
+                    <div className="flex-grow border-t border-gray-300" />
+                    <span className="flex-shrink mx-4 text-gray-400">or</span>
+                    <div className="flex-grow border-t border-gray-300" />
+                  </div>
+                  <button
+                    type="button"
+                    className="py-2 border-2 hover:bg-gray-100 bg-white text-gray-600 rounded-md duration-200 disabled:text-gray-300"
+                    disabled={isSubmitting}
+                  >
+                    Google
+                  </button>
+                </Form>
+              )}
             </Formik>
           </div>
         </Container>
