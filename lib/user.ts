@@ -1,4 +1,4 @@
-import { supabase } from "./initSupabase";
+import { supabase } from "./supabaseClient";
 
 export async function getProfile() {
   try {

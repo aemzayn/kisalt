@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Formik, Field, Form, FormikHelpers } from "formik";
+import clsx from "clsx";
+
 import Container from "components/Container";
 import Layout from "components/Layout";
-import { object, string } from "yup";
-import clsx from "clsx";
+import { login } from "lib/supabaseClient";
+import loginValidationScheme from "lib/validations/loginValidationScheme";
 
 type Props = {};
 
@@ -13,23 +15,55 @@ interface FormValues {
   password: string;
 }
 
-const loginValidationScheme = object().shape({
-  email: string().email("Invalid email").required("Email is required"),
-  password: string()
-    .min(6, "Must be at least 6 characters")
-    .required("Password cannot be empty."),
-});
-
-// TODO: Implement login
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export default function Login({}: Props) {
+  const handleSubmit = async (
+    values: FormValues,
+    {
+      setTouched,
+      setValues,
+      setFieldError,
+      setErrors,
+    }: FormikHelpers<FormValues>
+  ) => {
+    const { email, password } = values;
+
+    const { session, error } = await login({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error(error);
+      setFieldError("email", error.message);
+      setFieldError("password", error.message);
+      return false;
+    }
+
+    if (session) {
+      console.log(session);
+      setValues({
+        email: "",
+        password: "",
+      });
+
+      setErrors({
+        email: null,
+        password: null,
+      });
+    }
+
+    setTouched({
+      email: false,
+      password: false,
+    });
+  };
+
   return (
     <Layout>
       <Head>
         <title>Login</title>
       </Head>
-      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero pb-10">
+      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero h-hero pb-10">
         <Container height="full">
           <div className="h-full flex flex-col items-center md:justify-center pt-10 md:pt-0">
             <div className="text-center">
@@ -43,30 +77,7 @@ export default function Login({}: Props) {
                 email: "",
                 password: "",
               }}
-              onSubmit={(
-                values: FormValues,
-                {
-                  setTouched,
-                  setSubmitting,
-                  setValues,
-                }: FormikHelpers<FormValues>
-              ) => {
-                sleep(500)
-                  .then(() => {
-                    alert(JSON.stringify(values));
-                    setValues({
-                      email: "",
-                      password: "",
-                    });
-                    setTouched({
-                      email: false,
-                      password: false,
-                    });
-                  })
-                  .finally(() => {
-                    setSubmitting(false);
-                  });
-              }}
+              onSubmit={handleSubmit}
               validationSchema={loginValidationScheme}
             >
               {({ errors, touched, isSubmitting }) => (
@@ -74,7 +85,10 @@ export default function Login({}: Props) {
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email">Email address</label>
                     <Field
-                      className="w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      className={clsx(
+                        "w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500",
+                        errors.email && "ring-red-500"
+                      )}
                       type="email"
                       name="email"
                       id="email"
@@ -88,7 +102,10 @@ export default function Login({}: Props) {
                   <div className="flex flex-col gap-2">
                     <label htmlFor="password">Password</label>
                     <Field
-                      className="w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      className={clsx(
+                        "w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500",
+                        errors.password && "ring-red-500"
+                      )}
                       type="password"
                       name="password"
                       id="password"

@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
-import { object, string } from "yup";
+import clsx from "clsx";
+import { Formik, FormikHelpers, Form, Field } from "formik";
+
 import Container from "components/Container";
 import Layout from "components/Layout";
-import { Formik, FormikHelpers, Form, Field } from "formik";
-import clsx from "clsx";
+import { register, loginWithGoogle } from "lib/supabaseClient";
+import registerValidationScheme from "lib/validations/registerValidationScheme";
 
 type Props = {};
 
@@ -14,26 +16,55 @@ interface FormValues {
   password: string;
 }
 
-const registerValidationScheme = object().shape({
-  email: string().email("Invalid email").required("Email is required"),
-  fullName: string()
-    .min(4, "Must be at least 4 characters")
-    .required("Name is required"),
-  password: string()
-    .min(6, "Must be at least 6 characters")
-    .required("Password cannot be empty."),
-});
-
-// TODO: Implement register
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export default function Register({}: Props) {
+  const handleGoogleLogin = async () => {
+    const { user, session, error } = await loginWithGoogle();
+    if (error) {
+      console.log(error);
+      return false;
+    }
+
+    console.log(user, session);
+  };
+
+  const handleSubmit = async (
+    values: FormValues,
+    { setTouched, setSubmitting, setValues }: FormikHelpers<FormValues>
+  ) => {
+    const { email, password } = values;
+
+    const { session, error } = await register({
+      email,
+      password,
+    });
+
+    if (error != null) {
+      console.error(error);
+      return false;
+    }
+
+    if (session) {
+      console.log(session);
+      setValues({
+        email: "",
+        password: "",
+        fullName: "",
+      });
+    }
+
+    setTouched({
+      fullName: false,
+      email: false,
+      password: false,
+    });
+  };
+
   return (
     <Layout>
       <Head>
         <title>Register</title>
       </Head>
-      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero pb-10">
+      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero h-hero pb-10">
         <Container height="full">
           <div className="h-full flex flex-col items-center md:justify-center pt-10 md:pt-0">
             <div className="text-center">
@@ -45,32 +76,7 @@ export default function Register({}: Props) {
                 fullName: "",
                 password: "",
               }}
-              onSubmit={(
-                values: FormValues,
-                {
-                  setTouched,
-                  setSubmitting,
-                  setValues,
-                }: FormikHelpers<FormValues>
-              ) => {
-                sleep(500)
-                  .then(() => {
-                    alert(JSON.stringify(values));
-                    setValues({
-                      email: "",
-                      fullName: "",
-                      password: "",
-                    });
-                    setTouched({
-                      fullName: false,
-                      email: false,
-                      password: false,
-                    });
-                  })
-                  .finally(() => {
-                    setSubmitting(false);
-                  });
-              }}
+              onSubmit={handleSubmit}
               validationSchema={registerValidationScheme}
             >
               {({ errors, touched, isSubmitting }) => (
@@ -154,6 +160,7 @@ export default function Register({}: Props) {
                     type="button"
                     className="py-2 border-2 hover:bg-gray-100 bg-white text-gray-600 rounded-md duration-200 disabled:text-gray-300"
                     disabled={isSubmitting}
+                    onClick={handleGoogleLogin}
                   >
                     Google
                   </button>
