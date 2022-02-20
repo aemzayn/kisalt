@@ -33,7 +33,7 @@ export default function Register({}: Props) {
       <Head>
         <title>Register</title>
       </Head>
-      <div className="bg-gradient-to-b from-violet-200 to-violet-100 h-hero">
+      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero pb-10">
         <Container height="full">
           <div className="h-full flex flex-col items-center md:justify-center pt-10 md:pt-0">
             <div className="text-center">
