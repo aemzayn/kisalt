@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SunIcon from "@heroicons/react/solid/SunIcon";
+import { MenuIcon } from "@heroicons/react/solid";
 import React from "react";
 
 type Props = {};
@@ -21,14 +21,14 @@ export default function Header({}: Props) {
   return (
     <div
       id="main-header"
-      className="bg-white shadow-lg shadow-violet-300 sticky top-0 w-full"
+      className="bg-white shadow-lg shadow-violet-300 sticky top-0 w-full z-50"
     >
-      <div className="container mx-auto max-w-6xl flex items-center justify-between px-4 py-8 ">
+      <div className="container mx-auto max-w-6xl flex items-center justify-between px-8 lg:px-4 py-8 ">
         <Link href="/">
           <a className="text-2xl font-medium text-violet-900">Kisalt.</a>
         </Link>
 
-        <nav className="flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 ">
           <NavLink href="/">About</NavLink>
           <NavLink href="/">How it works</NavLink>
           <NavLink href="/">Sign up</NavLink>
@@ -36,6 +36,10 @@ export default function Header({}: Props) {
             Login
           </button>
         </nav>
+
+        <button className="md:hidden p-2 rounded-full bg-violet-200">
+          <MenuIcon className="h-5 w-5" />
+        </button>
       </div>
     </div>
   );

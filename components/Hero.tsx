@@ -1,32 +1,22 @@
 import Image from "next/image";
-import { useMemo } from "react";
 import Container from "./Container";
 
 type Props = {};
 
 export default function Hero({}: Props) {
-  const headerHeight = useMemo(() => {
-    const header = document.getElementById("main-header");
-    return header.offsetHeight || 104;
-  }, []);
-
   return (
     <section
       id="hero-section"
-      style={{
-        // full height - nav
-        height: `calc(100vh - ${headerHeight}px)`,
-      }}
-      className="bg-gradient-to-b from-violet-200 to-violet-100"
+      className="bg-gradient-to-b lg:h-[calc(100vh-104px)] from-violet-200 to-violet-100"
     >
       <Container height="full">
-        <div className="flex h-full">
-          <div className="flex-1 flex flex-col items-start  justify-center gap-y-8">
-            <h1 className="text-5xl relative font-bold leading-tight z-[1]">
+        <div className="flex flex-col md:flex-row lg:px-2 h-full">
+          <div className="flex-1 py-10 flex flex-col items-center lg:items-start text-center lg:text-left justify-center  gap-y-5 lg:gap-y-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl relative font-bold leading-tight z-[1] ">
               {["Shorten URLs are", "now made easier"].map((t, i) => (
                 <span
                   key={i}
-                  className="inline-block relative after:content-[''] after:w-full after:h-4 after:bg-violet-300 after:absolute after:bottom-1 after:inset-x-0 after:z-[-1]"
+                  className="inline-block relative after:content-[''] after:w-full after:h-4 after:bg-violet-300 after:absolute after:bottom-1 after:inset-x-0 after:z-[-1] last:ml-2 lg:last:ml-0"
                 >
                   {t}
                 </span>
@@ -47,7 +37,7 @@ export default function Hero({}: Props) {
               </button>
             </div>
           </div>
-          <div className="flex-1 flex flex-col items-center justify-center">
+          <div className="hidden lg:flex flex-1 flex-col items-center justify-center">
             <Image
               src="/assets/hero.png"
               alt="Person looking at phone"

@@ -9,6 +9,7 @@ function HomePage() {
         <title>Home</title>
       </Head>
       <Hero />
+      <div className="min-h-screen bg-violet-100"></div>
     </Layout>
   );
 }
