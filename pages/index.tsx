@@ -1,6 +1,7 @@
-import Hero from "components/Hero";
 import Head from "next/head";
 import Layout from "../components/Layout";
+import Hero from "components/Hero";
+import HomeInfo from "components/HomeInfo";
 
 function HomePage() {
   return (
@@ -8,8 +9,10 @@ function HomePage() {
       <Head>
         <title>Home</title>
       </Head>
-      <Hero />
-      <div className="min-h-screen bg-violet-100"></div>
+      <div className="bg-violet-100">
+        <Hero />
+        <HomeInfo />
+      </div>
     </Layout>
   );
 }
