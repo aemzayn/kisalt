@@ -33,9 +33,9 @@ export default function Register({}: Props) {
       <Head>
         <title>Register</title>
       </Head>
-      <div className="bg-gradient-to-b  from-violet-200 to-violet-100 lg:h-hero">
+      <div className="bg-gradient-to-b from-violet-200 to-violet-100 h-hero">
         <Container height="full">
-          <div className="h-full flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center md:justify-center pt-10 md:pt-0">
             <div className="text-center">
               <h1 className="text-3xl font-bold">Create new account</h1>
             </div>
@@ -74,11 +74,11 @@ export default function Register({}: Props) {
               validationSchema={registerValidationScheme}
             >
               {({ errors, touched, isSubmitting }) => (
-                <Form className="flex flex-col p-10 rounded-lg shadow-lg gap-5 bg-white mt-5">
+                <Form className="flex flex-col p-5 md:p-10 rounded-lg shadow-lg gap-5 bg-white mt-5">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="fullName">Full Name</label>
                     <Field
-                      className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      className="w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
                       type="text"
                       name="fullName"
                       id="fullName"
@@ -92,7 +92,7 @@ export default function Register({}: Props) {
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email">Email address</label>
                     <Field
-                      className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      className="w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
                       type="email"
                       name="email"
                       id="email"
@@ -107,7 +107,7 @@ export default function Register({}: Props) {
                   <div className="flex flex-col gap-2">
                     <label htmlFor="password">Password</label>
                     <Field
-                      className="w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
+                      className="w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500"
                       type="password"
                       name="password"
                       id="password"
@@ -119,7 +119,7 @@ export default function Register({}: Props) {
                       </p>
                     )}
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col md:flex-row gap-y-2 md:items-center justify-between">
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
