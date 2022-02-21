@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { ApiError, createClient, Session, User } from "@supabase/supabase-js";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -22,7 +22,16 @@ export type LoginArg = {
   password: string;
 };
 
-export async function login({ email, password }: LoginArg) {
+export type AuthResponse = {
+  session?: Session;
+  user?: User;
+  error?: ApiError;
+};
+
+export async function login({
+  email,
+  password,
+}: LoginArg): Promise<AuthResponse> {
   const res = await fetch("/api/auth/login", {
     ...defaultFetchOption,
     method: "POST",
@@ -39,7 +48,10 @@ export type RegisterArg = {
   password: string;
 };
 
-export async function register({ email, password }: RegisterArg) {
+export async function register({
+  email,
+  password,
+}: RegisterArg): Promise<AuthResponse> {
   const res = await fetch("/api/auth/register", {
     ...defaultFetchOption,
     method: "POST",

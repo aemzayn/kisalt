@@ -9,7 +9,10 @@ type Props = {
 export default function Container({ children, height }: Props) {
   return (
     <div
-      className={clsx("container max-w-6xl mx-auto", height && `h-${height}`)}
+      className={clsx(
+        "container max-w-6xl mx-auto px-4 xl:px-0",
+        height && `h-${height}`
+      )}
     >
       {children}
     </div>
