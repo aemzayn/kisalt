@@ -13,7 +13,7 @@ interface NavLink {
 function NavLink({ children, href }: NavLink) {
   return (
     <Link href={href}>
-      <a className="hover:text-violet-600 duration-75">{children}</a>
+      <a className="duration-75 hover:text-violet-600">{children}</a>
     </Link>
   );
 }
@@ -41,11 +41,11 @@ export default function Header({}: Props) {
     <div
       id="main-header"
       className={clsx(
-        "bg-white sticky top-0 w-full z-50",
+        "sticky top-0 z-50 w-full bg-white",
         headerOpen ? "shadow-none" : "shadow-lg shadow-violet-300"
       )}
     >
-      <div className="container mx-auto max-w-6xl flex items-center justify-between px-8 lg:px-4 py-8 ">
+      <div className="container mx-auto flex max-w-6xl items-center justify-between px-8 py-8 lg:px-4 ">
         <Link href="/">
           <a
             onClick={() => {
@@ -66,18 +66,18 @@ export default function Header({}: Props) {
                 toggleMobileHeader(false);
               }
             }}
-            className="md:hidden ml-auto mr-2 bg-violet-800 px-5 py-2 text-violet-50 rounded-full hover:bg-opacity-90 duration-75"
+            className="ml-auto mr-2 rounded-full bg-violet-800 px-5 py-2 text-violet-50 duration-75 hover:bg-opacity-90 md:hidden"
           >
             Login
           </a>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 ">
+        <nav className="hidden items-center gap-8 md:flex ">
           <NavLink href="/">About</NavLink>
           <NavLink href="/">How it works</NavLink>
           <NavLink href="/register">Sign up</NavLink>
           <Link href="/login">
-            <a className="bg-violet-800 px-5 py-2 text-violet-50 rounded-full hover:bg-opacity-90 duration-75">
+            <a className="rounded-full bg-violet-800 px-5 py-2 text-violet-50 duration-75 hover:bg-opacity-90">
               Login
             </a>
           </Link>
@@ -85,7 +85,7 @@ export default function Header({}: Props) {
 
         <button
           onClick={() => toggleMobileHeader(!headerOpen)}
-          className="md:hidden p-3 rounded-full bg-violet-200"
+          className="rounded-full bg-violet-200 p-3 md:hidden"
         >
           {headerOpen ? (
             <XIcon className="h-5 w-5" />
@@ -97,7 +97,7 @@ export default function Header({}: Props) {
 
       <nav
         className={clsx(
-          "flex-col lg:hidden w-full items-left absolute bg-white  border-t border-gray-300",
+          "items-left absolute w-full flex-col border-t border-gray-300  bg-white lg:hidden",
           headerOpen ? "flex" : "hidden"
         )}
       >

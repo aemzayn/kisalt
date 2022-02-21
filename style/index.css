@@ -13,7 +13,7 @@ body {
 }
 
 body.no-scroll {
-  @apply overflow-y-hidden h-full;
+  @apply h-full overflow-y-hidden;
 }
 
 html.no-scroll {
@@ -22,15 +22,15 @@ html.no-scroll {
 }
 
 .mobile-nav-item {
-  @apply py-5 px-8 border-gray-300 relative;
+  @apply relative border-gray-300 py-5 px-8;
 }
 
 .mobile-nav-item:not(:last-child) {
-  @apply after:content-[''] after:absolute after:bottom-0 after:inset-x-0 after:mx-auto after:w-[calc(100%-36px)] after:h-[1px] after:bg-gray-300;
+  @apply after:absolute after:inset-x-0 after:bottom-0 after:mx-auto after:h-[1px] after:w-[calc(100%-36px)] after:bg-gray-300 after:content-[''];
 }
 
 .cover {
-  @apply hidden absolute top-0 bottom-0 left-0 right-0 bg-neutral-800 z-20 bg-opacity-70 overflow-hidden;
+  @apply absolute top-0 bottom-0 left-0 right-0 z-20 hidden overflow-hidden bg-neutral-800 bg-opacity-70;
 }
 
 .cover.open {

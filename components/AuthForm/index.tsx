@@ -80,11 +80,11 @@ export default function AuthForm({ type = "login" }: Props) {
 
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-violet-200 to-violet-100 min-h-hero h-hero pb-10">
+      <div className="min-h-hero h-hero bg-gradient-to-b from-violet-200 to-violet-100 pb-10">
         <Container height="full">
-          <div className="h-full flex flex-col items-center md:justify-center pt-10 md:pt-0">
+          <div className="flex h-full flex-col items-center pt-10 md:justify-center md:pt-0">
             <div className="text-center">
-              <h1 className="text-3xl font-bold pb-2">
+              <h1 className="pb-2 text-3xl font-bold">
                 {type === "login"
                   ? "Sign in to your account"
                   : "Create new account"}
@@ -101,12 +101,12 @@ export default function AuthForm({ type = "login" }: Props) {
               validationSchema={loginValidationScheme}
             >
               {({ errors, touched, isSubmitting }) => (
-                <Form className="flex flex-col p-5 md:p-10 rounded-lg shadow-lg gap-5 bg-white mt-10">
+                <Form className="mt-10 flex flex-col gap-5 rounded-lg bg-white p-5 shadow-lg md:p-10">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email">Email address</label>
                     <Field
                       className={clsx(
-                        "w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500",
+                        "w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96",
                         errors.email && "ring-red-500"
                       )}
                       type="email"
@@ -123,7 +123,7 @@ export default function AuthForm({ type = "login" }: Props) {
                     <label htmlFor="password">Password</label>
                     <Field
                       className={clsx(
-                        "w-80 lg:w-96 rounded-md ring-1 ring-violet-300 focus:ring-violet-500",
+                        "w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96",
                         errors.password && "ring-red-500"
                       )}
                       type="password"
@@ -135,11 +135,11 @@ export default function AuthForm({ type = "login" }: Props) {
                       <p className="text-red-500">{errors.password}</p>
                     )}
                   </div>
-                  <div className="flex flex-col lg:flex-row gap-y-2 lg:items-center justify-between">
+                  <div className="flex flex-col justify-between gap-y-2 lg:flex-row lg:items-center">
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        className="rounded form-checkbox"
+                        className="form-checkbox rounded"
                         name="remember"
                         id="remember"
                       />
@@ -154,21 +154,21 @@ export default function AuthForm({ type = "login" }: Props) {
                   <button
                     type="submit"
                     className={clsx(
-                      "py-2 bg-violet-900 text-violet-50 rounded-md disabled:bg-violet-400",
+                      "rounded-md bg-violet-900 py-2 text-violet-50 disabled:bg-violet-400",
                       !isSubmitting ? "cursor-pointer" : "cursor-not-allowed"
                     )}
                     disabled={isSubmitting}
                   >
                     {isLogin ? "Login" : "Sign Up"}
                   </button>
-                  <div className="relative flex -my-2 items-center">
+                  <div className="relative -my-2 flex items-center">
                     <div className="flex-grow border-t border-gray-300" />
-                    <span className="flex-shrink mx-4 text-gray-400">or</span>
+                    <span className="mx-4 flex-shrink text-gray-400">or</span>
                     <div className="flex-grow border-t border-gray-300" />
                   </div>
                   <button
                     type="button"
-                    className="py-2 border-2 hover:bg-gray-100 bg-white text-gray-600 rounded-md duration-200 disabled:text-gray-300"
+                    className="rounded-md border-2 bg-white py-2 text-gray-600 duration-200 hover:bg-gray-100 disabled:text-gray-300"
                     disabled={isSubmitting}
                   >
                     Google
