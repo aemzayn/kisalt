@@ -1,12 +1,18 @@
-import Head from "next/head";
 import Link from "next/link";
 import { FormikHelpers, Formik, Form, Field } from "formik";
 import clsx from "clsx";
 
 import loginValidationScheme from "lib/validations/loginValidationScheme";
 import Container from "components/Container";
-import Layout from "components/Layout";
-import { login, register } from "lib/supabaseClient";
+import CommonLayout from "components/Layout/CommonLayout";
+import {
+  login,
+  loginWithGoogle,
+  register,
+  setSession,
+} from "lib/supabaseClient";
+import { EVENT_SIGN_IN } from "constants/common";
+import { dashboard } from "constants/paths";
 
 type Props = {
   type: "login" | "register";
@@ -59,8 +65,15 @@ export default function AuthForm({ type = "login" }: Props) {
       return false;
     }
 
-    if (session) {
-      console.log(session);
+    if (session && !error) {
+      if (type === "login") {
+        await setSession(EVENT_SIGN_IN, session);
+
+        setTimeout(() => {
+          window.location.assign(dashboard);
+        }, 500);
+      }
+
       setValues({
         email: "",
         password: "",
@@ -79,7 +92,7 @@ export default function AuthForm({ type = "login" }: Props) {
   };
 
   return (
-    <Layout>
+    <CommonLayout>
       <div className="min-h-hero h-hero bg-gradient-to-b from-violet-200 to-violet-100 pb-10">
         <Container height="full">
           <div className="flex h-full flex-col items-center pt-10 md:justify-center md:pt-0">
@@ -170,6 +183,7 @@ export default function AuthForm({ type = "login" }: Props) {
                     type="button"
                     className="rounded-md border-2 bg-white py-2 text-gray-600 duration-200 hover:bg-gray-100 disabled:text-gray-300"
                     disabled={isSubmitting}
+                    onClick={loginWithGoogle}
                   >
                     Google
                   </button>
@@ -179,6 +193,6 @@ export default function AuthForm({ type = "login" }: Props) {
           </div>
         </Container>
       </div>
-    </Layout>
+    </CommonLayout>
   );
 }

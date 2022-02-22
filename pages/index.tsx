@@ -1,11 +1,11 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
+import CommonLayout from "../components/Layout/CommonLayout";
 import Hero from "components/Hero";
 import HomeInfo from "components/HomeInfo";
 
 function HomePage() {
   return (
-    <Layout>
+    <CommonLayout>
       <Head>
         <title>Home</title>
       </Head>
@@ -13,7 +13,7 @@ function HomePage() {
         <Hero />
         <HomeInfo />
       </div>
-    </Layout>
+    </CommonLayout>
   );
 }
 

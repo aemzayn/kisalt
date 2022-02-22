@@ -1,4 +1,6 @@
 import { ApiError, createClient, Session, User } from "@supabase/supabase-js";
+import { HOME } from "constants/paths";
+import { defaultFetchOption } from "./fetcher";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -6,16 +8,6 @@ export const supabase = createClient(
 );
 
 export type Provider = "google" | "github";
-
-export type DefaultFetchOption = {
-  headers: HeadersInit;
-  credentials: RequestCredentials;
-};
-
-export const defaultFetchOption: DefaultFetchOption = {
-  headers: new Headers({ "Content-Type": "application/json" }),
-  credentials: "same-origin",
-};
 
 export type LoginArg = {
   email: string;
@@ -64,8 +56,21 @@ export async function register({
 }
 
 export async function loginWithGoogle() {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: "google",
-  });
+  const { user, session, error } = await supabase.auth.signIn(
+    {
+      provider: "google",
+    },
+    { redirectTo: HOME }
+  );
   return { user, session, error };
 }
+
+export const setSession = async (event: string, session: Session | null) => {
+  const res = await fetch("/api/auth/set-session", {
+    ...defaultFetchOption,
+    method: "POST",
+    credentials: "same-origin",
+    body: JSON.stringify({ event, session }),
+  });
+  return await res.json();
+};

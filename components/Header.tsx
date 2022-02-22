@@ -2,23 +2,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
+import NavLink from "./NavLink";
 
-type Props = {};
+export type HeaderProps = {};
 
-interface NavLink {
-  children: React.ReactNode;
-  href: string;
-}
-
-function NavLink({ children, href }: NavLink) {
-  return (
-    <Link href={href}>
-      <a className="duration-75 hover:text-violet-600">{children}</a>
-    </Link>
-  );
-}
-
-export default function Header({}: Props) {
+export default function Header({}: HeaderProps) {
   const [headerOpen, setOpen] = useState(false);
 
   const toggleMobileHeader = (status: boolean) => {
