@@ -1,7 +1,7 @@
 import { NextSeo } from "next-seo";
 import { useEffect } from "react";
 import Container from "components/Container/Container";
-import CommonLayout from "components/Layout/CommonLayout";
+import CommonLayout from "components/Layout/Layout";
 import { callbackHandler } from "lib/helpers";
 
 export default function Callback() {

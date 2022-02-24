@@ -1,6 +1,6 @@
 import { NextSeo } from "next-seo";
 
-import CommonLayout from "../components/Layout/CommonLayout";
+import CommonLayout from "../components/Layout/Layout";
 import HomeHero from "components/Home/HomeHero";
 import HomeInfo from "components/Home/HomeInfo";
 

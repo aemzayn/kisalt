@@ -1,10 +1,10 @@
 import Header from "../Header/Header";
 
-export type CommonLayoutProps = {
+export type LayoutProps = {
   children?: React.ReactNode;
 };
 
-export default function CommonLayout({ children }: CommonLayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen">
       <Header />

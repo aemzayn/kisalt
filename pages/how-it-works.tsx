@@ -1,4 +1,4 @@
-import CommonLayout from "components/Layout/CommonLayout";
+import CommonLayout from "components/Layout/Layout";
 import { NextSeo } from "next-seo";
 
 export type HowItWorksProps = {};
