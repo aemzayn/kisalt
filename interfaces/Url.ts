@@ -5,10 +5,10 @@
 // import { User } from 'path/to/interfaces';
 
 export interface Url {
-  readonly id: string;
-  readonly real_url: string;
-  readonly slug: string;
-  readonly click: number;
-  readonly created_at: Date;
-  readonly updated_at: Date;
+  readonly id?: string;
+  readonly real_url?: string;
+  readonly slug?: string;
+  readonly clicks?: number;
+  readonly created_at?: Date;
+  readonly updated_at?: Date;
 }

@@ -1,6 +1,6 @@
 import useUser from "hooks/useUser";
+import { User } from "interfaces/User";
 import { createContext, useContext } from "react";
-import { User } from "types/User";
 
 export type AuthContext = {
   user: User | null;

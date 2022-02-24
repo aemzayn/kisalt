@@ -7,7 +7,6 @@ export default async function handler(
 ) {
   try {
     const r = await supabase.auth.signOut();
-    console.log(r);
     res.statusCode = 200;
     res.json({
       success: true,

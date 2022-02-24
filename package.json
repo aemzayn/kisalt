@@ -24,10 +24,10 @@
     "clsx": "^1.1.1",
     "copy-to-clipboard": "^3.3.1",
     "formik": "^2.2.9",
-    "nanoid": "^3.3.1",
     "next": "^12.1.0",
     "next-seo": "^5.1.0",
     "react": "17.0.2",
+    "react-countup": "^6.1.1",
     "react-dom": "17.0.2",
     "swr": "^1.2.2",
     "yup": "^0.32.11"

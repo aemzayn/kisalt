@@ -25,8 +25,6 @@ export default async function handler(
       email
     );
 
-    console.log(data);
-
     if (!error && data) {
       res.statusCode = 200;
       res.json({

@@ -1,21 +1,28 @@
 import { LinkIcon, TrendingUpIcon, CalendarIcon } from "@heroicons/react/solid";
 
 import InfoItem from "./InfoItem";
-import LinkItem, { LinkItemProps } from "./LinkItem";
+import LinkItem from "./LinkItem";
 import { InfoItemProps } from "./InfoItem";
 import PageContainer from "components/Container/PageContainer";
+import useUrls from "hooks/useUrls";
+import { useAuthContext } from "context/AuthContext";
+import useDashboard from "hooks/useDashboard";
+import ShortUrlList from "./ShortUrlList";
 
 export type DashboardProps = {};
 
 export default function Dashboard({}: DashboardProps) {
+  const { user } = useAuthContext();
+  const { data, isLoading } = useDashboard(user?.id);
+
   const infos: InfoItemProps[] = [
     {
-      count: 1,
+      count: data?.data.totalClicks || 0,
       text: "ALL URLS",
       Icon: LinkIcon,
     },
     {
-      count: 120,
+      count: 1,
       text: "TOTAL CLICKS",
       Icon: TrendingUpIcon,
     },
@@ -26,32 +33,14 @@ export default function Dashboard({}: DashboardProps) {
     },
   ];
 
-  const links: LinkItemProps[] = [
-    {
-      shortUrl: "veri-yapilari",
-      longUrl:
-        "https://www.notion.so/Veri-Yap-lar-Ders-Konular-6c650f38fb1a42f988d1c2687aa15fda",
-      clicks: 152,
-    },
-    {
-      shortUrl: "nguiz",
-      longUrl: "https://quiz-app-aemzayn.vercel.app/",
-      clicks: 152,
-    },
-    {
-      shortUrl: "portfolio",
-      longUrl: "https://ahmadmuslih.space",
-      clicks: 74,
-    },
-  ];
-
   return (
     <PageContainer>
       <div className="h-full w-full py-6">
         <div className="grid grid-cols-12 gap-6">
-          {infos.map(({ text, count, Icon }) => (
-            <InfoItem key={text} text={text} count={count} Icon={Icon} />
-          ))}
+          {!isLoading &&
+            infos.map(({ text, count, Icon }) => (
+              <InfoItem key={text} text={text} count={count} Icon={Icon} />
+            ))}
 
           <div className="col-span-8 h-96 rounded-md border border-gray-200 bg-white"></div>
           <div className="col-span-4 h-96 rounded-md border border-gray-200 bg-white"></div>
@@ -68,19 +57,7 @@ export default function Dashboard({}: DashboardProps) {
           </button>
         </div>
 
-        <section className="py-6" id="my-links-section">
-          <h1 className="text-4xl font-bold">My Links</h1>
-          <div className="mt-6 grid grid-cols-3 gap-6">
-            {links.map(({ clicks, longUrl, shortUrl }) => (
-              <LinkItem
-                key={shortUrl}
-                clicks={clicks}
-                longUrl={longUrl}
-                shortUrl={shortUrl}
-              />
-            ))}
-          </div>
-        </section>
+        <ShortUrlList urls={data?.data?.urls} />
       </div>
     </PageContainer>
   );

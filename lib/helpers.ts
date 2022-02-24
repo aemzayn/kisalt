@@ -10,7 +10,6 @@ import { setSession } from "./supabaseClient";
 export const callbackHandler = async () => {
   if (!typeof window !== undefined) {
     const hash = window.location.hash;
-    console.log("hash", hash);
 
     if (hash) {
       const urlObj = new URL(`https://example.com?${hash.slice(1)}`);
