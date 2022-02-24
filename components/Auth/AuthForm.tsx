@@ -2,9 +2,8 @@ import Link from "next/link";
 import { FormikHelpers, Formik, Form, Field } from "formik";
 import clsx from "clsx";
 
-import loginValidationScheme from "lib/validations/loginValidationScheme";
+import { authValidationScheme } from "lib/validations";
 import Container from "components/Container/Container";
-import CommonLayout from "components/Layout/CommonLayout";
 import {
   login,
   loginWithGoogle,
@@ -14,7 +13,7 @@ import {
 import { EVENT_SIGN_IN } from "constants/common";
 import { dashboard } from "constants/paths";
 
-type Props = {
+export type AuthFormProps = {
   type: "login" | "register";
 };
 
@@ -23,7 +22,7 @@ export type FormValues = {
   password: string;
 };
 
-export default function AuthForm({ type = "login" }: Props) {
+export default function AuthForm({ type = "login" }: AuthFormProps) {
   const isLogin = type === "login";
   const handleError = (msg: any) => {};
 
@@ -110,7 +109,7 @@ export default function AuthForm({ type = "login" }: Props) {
               password: "",
             }}
             onSubmit={handleSubmit}
-            validationSchema={loginValidationScheme}
+            validationSchema={authValidationScheme}
           >
             {({ errors, touched, isSubmitting }) => (
               <Form className="mt-10 flex flex-col gap-5 rounded-lg bg-white p-5 shadow-lg md:p-10">
