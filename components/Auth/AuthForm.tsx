@@ -28,12 +28,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
 
   const handleSubmit = async (
     values: FormValues,
-    {
-      setTouched,
-      setValues,
-      setFieldError,
-      setErrors,
-    }: FormikHelpers<FormValues>
+    { resetForm, setErrors }: FormikHelpers<FormValues>
   ) => {
     const { email, password } = values;
     let session: any;
@@ -59,8 +54,10 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
 
     if (error) {
       handleError(error);
-      setFieldError("email", error.message);
-      setFieldError("password", error.message);
+      setErrors({
+        email: error.message,
+        password: error.message,
+      });
       return false;
     }
 
@@ -72,26 +69,13 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
           window.location.assign(dashboard);
         }, 500);
       }
-
-      setValues({
-        email: "",
-        password: "",
-      });
-
-      setErrors({
-        email: null,
-        password: null,
-      });
     }
 
-    setTouched({
-      email: false,
-      password: false,
-    });
+    resetForm();
   };
 
   return (
-    <div className="min-h-hero h-hero bg-gradient-to-b from-violet-200 to-violet-100 pb-10">
+    <div className="min-h-hero h-hero bg-gradient-to-b from-violet-200 to-violet-100 pt-5 pb-10">
       <Container height="full">
         <div className="flex h-full flex-col items-center pt-10 md:justify-center md:pt-0">
           <div className="text-center">
@@ -127,7 +111,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                     required
                   />
                   {errors.email && touched.email && (
-                    <p className="text-red-500">{errors.email}</p>
+                    <p className="max-w-fit text-red-500">{errors.email}</p>
                   )}
                 </div>
                 <div className="flex flex-col gap-2">
@@ -143,7 +127,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                     required
                   />
                   {errors.password && touched.password && (
-                    <p className="text-red-500">{errors.password}</p>
+                    <p className="max-w-fit text-red-500">{errors.password}</p>
                   )}
                 </div>
                 <div className="flex flex-col justify-between gap-y-2 lg:flex-row lg:items-center">

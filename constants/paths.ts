@@ -12,6 +12,7 @@ export const loginApi: string = "/api/auth/login";
 export const registerApi: string = "/api/auth/register";
 export const logOutApi: string = "/api/auth/logout";
 export const setSessionApi: string = "/api/auth/set-session";
+export const resetPasswordApi: string = "/api/auth/reset-password";
 
 export const FALLBACK: string = `${HOME}callback`;
 

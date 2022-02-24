@@ -5,6 +5,7 @@ import {
   loginApi,
   logOutApi,
   registerApi,
+  resetPasswordApi,
   setSessionApi,
 } from "constants/paths";
 import { defaultFetchOption } from "./fetcher";
@@ -92,6 +93,16 @@ export const setSession = async (event: string, session: Session | null) => {
     method: "POST",
     credentials: "same-origin",
     body: JSON.stringify({ event, session }),
+  });
+  return await res.json();
+};
+
+export const sendResetEmail = async (email: string) => {
+  const res = await fetch(resetPasswordApi, {
+    ...defaultFetchOption,
+    method: "POST",
+    credentials: "same-origin",
+    body: JSON.stringify({ email }),
   });
   return await res.json();
 };

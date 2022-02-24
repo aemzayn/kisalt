@@ -1,13 +1,17 @@
-import Container from "./Container";
+import Container, { Height } from "./Container";
 
 export type PageContainerProps = {
   children: React.ReactNode;
+  height?: Height;
 };
 
-export default function PageContainer({ children }: PageContainerProps) {
+export default function PageContainer({
+  children,
+  height,
+}: PageContainerProps) {
   return (
     <div className="lg:min-h-hero bg-violet-100">
-      <Container>{children}</Container>
+      <Container height={height}>{children}</Container>
     </div>
   );
 }
