@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useRef, useEffect } from "react";
-import Container from "./Container";
+import Container from "../Container/Container";
 
 type Props = {};
 
-export default function Hero({}: Props) {
+export default function HomeHero({}: Props) {
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();

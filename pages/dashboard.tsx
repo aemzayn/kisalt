@@ -1,20 +1,15 @@
-import Head from "next/head";
+import { NextSeo } from "next-seo";
+
 import AuthLayout from "components/Layout/AuthLayout";
-import PrivateRoute from "components/Route/PrivateRoute";
+import DashboardWrapper from "components/Dashboard/DashboardWrapper";
 
-import DashboardComponent from "components/Dashboard/Dashboard";
+export type DashboardPageProps = {};
 
-type Props = {};
-
-export const Dashboard = ({}: Props) => {
+export const Dashboard = ({}: DashboardPageProps) => {
   return (
     <AuthLayout>
-      <Head>
-        <title>Dashboard</title>
-      </Head>
-      <PrivateRoute>
-        <DashboardComponent />
-      </PrivateRoute>
+      <NextSeo title="Dashboard" />
+      <DashboardWrapper />
     </AuthLayout>
   );
 };

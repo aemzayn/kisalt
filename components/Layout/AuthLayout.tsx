@@ -1,5 +1,5 @@
 import { AuthProvider } from "context/AuthContext";
-import AuthHeader from "components/AuthHeader";
+import AuthHeader from "components/Header/AuthHeader";
 
 type Props = {
   children: React.ReactNode;

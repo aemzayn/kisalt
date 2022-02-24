@@ -1,19 +1,15 @@
-import Head from "next/head";
-import AuthForm from "components/AuthForm";
-import PublicRoute from "components/Route/PublicRoute";
+import { NextSeo } from "next-seo";
+
+import LoginWrapper from "components/Auth/LoginWrapper";
 import AuthLayout from "components/Layout/AuthLayout";
 
-type Props = {};
+export type LoginPageProps = {};
 
-export default function Login({}: Props) {
+export default function Login({}: LoginPageProps) {
   return (
     <AuthLayout>
-      <Head>
-        <title>Login</title>
-      </Head>
-      <PublicRoute>
-        <AuthForm type="login" />
-      </PublicRoute>
+      <NextSeo title="Login to Kisalt" />
+      <LoginWrapper />
     </AuthLayout>
   );
 }

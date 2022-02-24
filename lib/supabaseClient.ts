@@ -1,5 +1,12 @@
 import { ApiError, createClient, Session, User } from "@supabase/supabase-js";
-import { HOME } from "constants/paths";
+import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from "constants/common";
+import {
+  HOME,
+  loginApi,
+  logOutApi,
+  registerApi,
+  setSessionApi,
+} from "constants/paths";
 import { defaultFetchOption } from "./fetcher";
 
 export const supabase = createClient(
@@ -24,7 +31,7 @@ export async function login({
   email,
   password,
 }: LoginArg): Promise<AuthResponse> {
-  const res = await fetch("/api/auth/login", {
+  const res = await fetch(loginApi, {
     ...defaultFetchOption,
     method: "POST",
     credentials: "same-origin",
@@ -44,7 +51,7 @@ export async function register({
   email,
   password,
 }: RegisterArg): Promise<AuthResponse> {
-  const res = await fetch("/api/auth/register", {
+  const res = await fetch(registerApi, {
     ...defaultFetchOption,
     method: "POST",
     credentials: "same-origin",
@@ -65,8 +72,22 @@ export async function loginWithGoogle() {
   return { user, session, error };
 }
 
+export const logOut = async () => {
+  const session = supabase.auth.session();
+
+  fetch(logOutApi, {
+    ...defaultFetchOption,
+  }).then((res) => res.json());
+  await setSession(EVENT_SIGN_OUT, session);
+
+  setTimeout(() => {
+    window.localStorage.removeItem(LS_AUTH_TOKEN);
+    window.location.assign("/");
+  }, 500);
+};
+
 export const setSession = async (event: string, session: Session | null) => {
-  const res = await fetch("/api/auth/set-session", {
+  const res = await fetch(setSessionApi, {
     ...defaultFetchOption,
     method: "POST",
     credentials: "same-origin",

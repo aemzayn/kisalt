@@ -1,19 +1,15 @@
-import Head from "next/head";
-import AuthForm from "components/AuthForm";
+import { NextSeo } from "next-seo";
+
 import AuthLayout from "components/Layout/AuthLayout";
-import PublicRoute from "components/Route/PublicRoute";
+import RegisterWrapper from "components/Auth/RegisterWrapper";
 
-type Props = {};
+export type RegisterPageProps = {};
 
-export default function Register({}: Props) {
+export default function Register({}: RegisterPageProps) {
   return (
     <AuthLayout>
-      <Head>
-        <title>Sign Up to Kisalt</title>
-      </Head>
-      <PublicRoute>
-        <AuthForm type="register" />
-      </PublicRoute>
+      <NextSeo title="Sign Up to Kisalt" />
+      <RegisterWrapper />
     </AuthLayout>
   );
 }

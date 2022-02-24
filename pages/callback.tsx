@@ -1,8 +1,8 @@
-import Container from "components/Container";
+import { NextSeo } from "next-seo";
+import { useEffect } from "react";
+import Container from "components/Container/Container";
 import CommonLayout from "components/Layout/CommonLayout";
 import { callbackHandler } from "lib/helpers";
-import Head from "next/head";
-import { useEffect } from "react";
 
 export default function Callback() {
   useEffect(() => {
@@ -10,12 +10,10 @@ export default function Callback() {
       callbackHandler();
     }
   }, []);
+
   return (
     <CommonLayout>
-      <Head>
-        <title>Kisalt</title>
-        <meta name="robots" content="noindex,nofollow" />
-      </Head>
+      <NextSeo nofollow noindex />
       <div className="h-screen bg-violet-200">
         <Container height="full">
           <div className="flex flex-col gap-2 pt-4 text-center">

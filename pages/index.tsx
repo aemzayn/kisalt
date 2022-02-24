@@ -1,20 +1,17 @@
-import Head from "next/head";
-import CommonLayout from "../components/Layout/CommonLayout";
-import Hero from "components/Hero";
-import HomeInfo from "components/HomeInfo";
+import { NextSeo } from "next-seo";
 
-function HomePage() {
+import CommonLayout from "../components/Layout/CommonLayout";
+import HomeHero from "components/Home/HomeHero";
+import HomeInfo from "components/Home/HomeInfo";
+
+export default function HomePage() {
   return (
     <CommonLayout>
-      <Head>
-        <title>Home</title>
-      </Head>
+      <NextSeo title="Home" />
       <div className="bg-violet-100">
-        <Hero />
+        <HomeHero />
         <HomeInfo />
       </div>
     </CommonLayout>
   );
 }
-
-export default HomePage;

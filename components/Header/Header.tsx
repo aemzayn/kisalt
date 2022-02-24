@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
+
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
-import NavLink from "./NavLink";
+import MobileNav from "components/Nav/MobileNav";
+import Nav from "components/Nav";
 
 export type HeaderProps = {};
 
@@ -25,6 +27,14 @@ export default function Header({}: HeaderProps) {
     setOpen(status);
   };
 
+  const handleCloseOnClick = () => {
+    if (headerOpen) toggleMobileHeader(false);
+  };
+
+  const toggle = () => {
+    toggleMobileHeader(!headerOpen);
+  };
+
   return (
     <div
       id="main-header"
@@ -36,11 +46,7 @@ export default function Header({}: HeaderProps) {
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-8 py-8 lg:px-4 ">
         <Link href="/">
           <a
-            onClick={() => {
-              if (headerOpen) {
-                toggleMobileHeader(false);
-              }
-            }}
+            onClick={handleCloseOnClick}
             className="text-2xl font-medium text-violet-900"
           >
             Kisalt.
@@ -49,30 +55,17 @@ export default function Header({}: HeaderProps) {
 
         <Link href="/login">
           <a
-            onClick={() => {
-              if (headerOpen) {
-                toggleMobileHeader(false);
-              }
-            }}
+            onClick={handleCloseOnClick}
             className="ml-auto mr-2 rounded-full bg-violet-800 px-5 py-2 text-violet-50 duration-75 hover:bg-opacity-90 md:hidden"
           >
             Login
           </a>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex ">
-          <NavLink href="/">About</NavLink>
-          <NavLink href="/">How it works</NavLink>
-          <NavLink href="/register">Sign up</NavLink>
-          <Link href="/login">
-            <a className="rounded-full bg-violet-800 px-5 py-2 text-violet-50 duration-75 hover:bg-opacity-90">
-              Login
-            </a>
-          </Link>
-        </nav>
+        <Nav />
 
         <button
-          onClick={() => toggleMobileHeader(!headerOpen)}
+          onClick={toggle}
           className="rounded-full bg-violet-200 p-3 md:hidden"
         >
           {headerOpen ? (
@@ -83,31 +76,7 @@ export default function Header({}: HeaderProps) {
         </button>
       </div>
 
-      <nav
-        className={clsx(
-          "items-left absolute w-full flex-col border-t border-gray-300  bg-white lg:hidden",
-          headerOpen ? "flex" : "hidden"
-        )}
-      >
-        <div
-          className="mobile-nav-item"
-          onClick={() => toggleMobileHeader(false)}
-        >
-          <NavLink href="/">About</NavLink>
-        </div>
-        <div
-          className="mobile-nav-item"
-          onClick={() => toggleMobileHeader(false)}
-        >
-          <NavLink href="/">How it works</NavLink>
-        </div>
-        <div
-          className="mobile-nav-item"
-          onClick={() => toggleMobileHeader(false)}
-        >
-          <NavLink href="/register">Sign up</NavLink>
-        </div>
-      </nav>
+      <MobileNav isOpen={headerOpen} setHeader={toggleMobileHeader} />
     </div>
   );
 }

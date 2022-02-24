@@ -1,10 +1,11 @@
 import { LinkIcon, TrendingUpIcon, CalendarIcon } from "@heroicons/react/solid";
-import Container from "components/Container";
+
 import InfoItem from "./InfoItem";
 import LinkItem, { LinkItemProps } from "./LinkItem";
 import { InfoItemProps } from "./InfoItem";
+import PageContainer from "components/Container/PageContainer";
 
-type DashboardProps = {};
+export type DashboardProps = {};
 
 export default function Dashboard({}: DashboardProps) {
   const infos: InfoItemProps[] = [
@@ -45,44 +46,42 @@ export default function Dashboard({}: DashboardProps) {
   ];
 
   return (
-    <div className="lg:min-h-hero bg-violet-100">
-      <Container>
-        <div className="h-full w-full py-6">
-          <div className="grid grid-cols-12 gap-6">
-            {infos.map(({ text, count, Icon }) => (
-              <InfoItem key={text} text={text} count={count} Icon={Icon} />
-            ))}
+    <PageContainer>
+      <div className="h-full w-full py-6">
+        <div className="grid grid-cols-12 gap-6">
+          {infos.map(({ text, count, Icon }) => (
+            <InfoItem key={text} text={text} count={count} Icon={Icon} />
+          ))}
 
-            <div className="col-span-8 h-96 rounded-md border border-gray-200 bg-white"></div>
-            <div className="col-span-4 h-96 rounded-md border border-gray-200 bg-white"></div>
+          <div className="col-span-8 h-96 rounded-md border border-gray-200 bg-white"></div>
+          <div className="col-span-4 h-96 rounded-md border border-gray-200 bg-white"></div>
 
-            <div className="col-span-9 flex h-16 items-center justify-center rounded-md border border-gray-200 bg-white p-2">
-              <input
-                type="url"
-                placeholder="Create new short link"
-                className="flex-1 border-0 ring-0"
-              />
-            </div>
-            <button className="col-span-3 h-16 rounded-md bg-violet-700 text-white duration-100 hover:bg-opacity-90">
-              Shorten
-            </button>
+          <div className="col-span-9 flex h-16 items-center justify-center rounded-md border border-gray-200 bg-white p-2">
+            <input
+              type="url"
+              placeholder="Create new short link"
+              className="flex-1 border-0 ring-0"
+            />
           </div>
-
-          <section className="py-6" id="my-links-section">
-            <h1 className="text-4xl font-bold">My Links</h1>
-            <div className="mt-6 grid grid-cols-3 gap-6">
-              {links.map(({ clicks, longUrl, shortUrl }) => (
-                <LinkItem
-                  key={shortUrl}
-                  clicks={clicks}
-                  longUrl={longUrl}
-                  shortUrl={shortUrl}
-                />
-              ))}
-            </div>
-          </section>
+          <button className="col-span-3 h-16 rounded-md bg-violet-700 text-white duration-100 hover:bg-opacity-90">
+            Shorten
+          </button>
         </div>
-      </Container>
-    </div>
+
+        <section className="py-6" id="my-links-section">
+          <h1 className="text-4xl font-bold">My Links</h1>
+          <div className="mt-6 grid grid-cols-3 gap-6">
+            {links.map(({ clicks, longUrl, shortUrl }) => (
+              <LinkItem
+                key={shortUrl}
+                clicks={clicks}
+                longUrl={longUrl}
+                shortUrl={shortUrl}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
+    </PageContainer>
   );
 }

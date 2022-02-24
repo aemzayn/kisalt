@@ -4,11 +4,11 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type Link = {
-  id: number;
-  name: string;
-  created_at: string;
-  url: string;
-  user: string;
-  clicks: number;
-};
+export interface Url {
+  id: string;
+  real_url: string;
+  slug: string;
+  click: number;
+  created_at: Date;
+  updated_at: Date;
+}

@@ -5,4 +5,10 @@ export const login: string = "/login";
 export const signup: string = "/signup";
 export const about: string = "/about";
 
-export const FALLBACK = `${HOME}callback`;
+export const checkAuth: string = "/api/auth/check-auth";
+export const loginApi: string = "/api/auth/login";
+export const registerApi: string = "/api/auth/register";
+export const logOutApi: string = "/api/auth/logout";
+export const setSessionApi: string = "/api/auth/set-session";
+
+export const FALLBACK: string = `${HOME}callback`;

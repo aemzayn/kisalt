@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { dashboard } from "constants/paths";
 import { useAuthContext } from "context/AuthContext";
+import LoadingPage from "components/Loading/LoadingPage";
 
 export type PublicRouteProps = {
   children: React.ReactNode;
@@ -14,13 +15,13 @@ export default function PublicRoute({
   const router = useRouter();
   const { isLoading, isLogin } = useAuthContext();
 
-  if (isLoading) {
-    return <div className="h-screen bg-violet-100"></div>;
+  if (!isLoading) {
+    if (!isLogin) {
+      return <>{children}</>;
+    } else {
+      router.push(redirectPath);
+    }
   }
 
-  if (!isLoading && isLogin) {
-    router.push(redirectPath);
-  }
-
-  return <>{children}</>;
+  return <LoadingPage />;
 }

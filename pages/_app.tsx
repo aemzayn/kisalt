@@ -4,7 +4,14 @@ import "@fontsource/work-sans/700.css";
 import "../style/index.css";
 
 import type { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
+import nextSeoConfig from "config/next-seo.config";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <DefaultSeo {...nextSeoConfig} />
+      <Component {...pageProps} />
+    </>
+  );
 }
