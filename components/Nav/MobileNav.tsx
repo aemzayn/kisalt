@@ -1,5 +1,8 @@
+import { useMemo } from "react";
 import clsx from "clsx";
-import NavLink from "components/Header/NavLink";
+
+import NavLink from "components/Nav/NavLink";
+import { headerLinks } from "constants/paths";
 
 export type MobileNavProps = {
   isOpen: boolean;
@@ -8,6 +11,10 @@ export type MobileNavProps = {
 
 export default function MobileNav({ isOpen, setHeader }: MobileNavProps) {
   const closeHeader = () => setHeader(false);
+  const links = useMemo(() => {
+    return headerLinks.filter((link) => link.type === "link");
+  }, []);
+
   return (
     <nav
       className={clsx(
@@ -15,15 +22,11 @@ export default function MobileNav({ isOpen, setHeader }: MobileNavProps) {
         isOpen ? "flex" : "hidden"
       )}
     >
-      <div className="mobile-nav-item" onClick={closeHeader}>
-        <NavLink href="/">About</NavLink>
-      </div>
-      <div className="mobile-nav-item" onClick={closeHeader}>
-        <NavLink href="/">How it works</NavLink>
-      </div>
-      <div className="mobile-nav-item" onClick={closeHeader}>
-        <NavLink href="/register">Sign up</NavLink>
-      </div>
+      {links.map((link) => (
+        <div key={link.route} className="mobile-nav-item" onClick={closeHeader}>
+          <NavLink href={link.route} label={link.label} />
+        </div>
+      ))}
     </nav>
   );
 }
