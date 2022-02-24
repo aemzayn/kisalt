@@ -8,6 +8,7 @@ import useUrls from "hooks/useUrls";
 import { useAuthContext } from "context/AuthContext";
 import useDashboard from "hooks/useDashboard";
 import ShortUrlList from "./ShortUrlList";
+import NewUrlForm from "./NewUrlForm";
 
 export type DashboardProps = {};
 
@@ -45,16 +46,7 @@ export default function Dashboard({}: DashboardProps) {
           <div className="col-span-8 h-96 rounded-md border border-gray-200 bg-white"></div>
           <div className="col-span-4 h-96 rounded-md border border-gray-200 bg-white"></div>
 
-          <div className="col-span-9 flex h-16 items-center justify-center rounded-md border border-gray-200 bg-white p-2">
-            <input
-              type="url"
-              placeholder="Create new short link"
-              className="flex-1 border-0 ring-0"
-            />
-          </div>
-          <button className="col-span-3 h-16 rounded-md bg-violet-700 text-white duration-100 hover:bg-opacity-90">
-            Shorten
-          </button>
+          <NewUrlForm />
         </div>
 
         <ShortUrlList urls={data?.data?.urls} />

@@ -14,3 +14,10 @@ export const authValidationScheme = object().shape({
 export const resetPasswordValidationScheme = object().shape({
   email: emailValidation,
 });
+
+export const newUrlValidationScheme = object().shape({
+  shortUrl: string()
+    .min(2, "Must be longer than 2 characters.")
+    .required("Required"),
+  longUrl: string().url("Must be a valid url.").required("Required"),
+});
