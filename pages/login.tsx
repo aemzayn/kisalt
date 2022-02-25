@@ -1,6 +1,6 @@
 import { NextSeo } from "next-seo";
 
-import LoginWrapper from "components/Auth/LoginWrapper";
+import LoginWrapper from "components/LoginWrapper";
 import AuthLayout from "components/Layout/AuthLayout";
 
 export type LoginPageProps = {};

@@ -12,7 +12,7 @@ export default function HomeHero({}: Props) {
   return (
     <section
       id="hero-section"
-      className="lg:h-hero bg-gradient-to-b  from-violet-200 to-violet-100"
+      className="lg:h-hero bg-gradient-to-b  from-violet-200 to-violet-100 pt-10"
     >
       <Container height="full">
         <div className="flex h-full flex-col md:flex-row lg:px-2">

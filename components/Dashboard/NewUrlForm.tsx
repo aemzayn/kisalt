@@ -1,24 +1,10 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { newUrlValidationScheme } from "lib/validations";
-import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import ErrorMessage from "components/AuthForm/ErrorMessage";
 
 export type Values = {
   longUrl: string;
   shortUrl: string;
-};
-
-export const ErrorIcon = () => <ExclamationCircleIcon className="h-5 w-5" />;
-
-export type ErrorMessageProps = {
-  msg: string;
-};
-
-export const ErrorMessage = ({ msg }: ErrorMessageProps) => {
-  return (
-    <p className="flex items-center gap-1 text-red-500">
-      <ErrorIcon /> {msg}
-    </p>
-  );
 };
 
 export type NewUrlFormProps = {};

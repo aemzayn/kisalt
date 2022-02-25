@@ -12,6 +12,7 @@ import {
 } from "lib/supabaseClient";
 import { EVENT_SIGN_IN } from "constants/common";
 import { dashboard } from "constants/paths";
+import ErrorMessage from "./ErrorMessage";
 
 export type AuthFormProps = {
   type: "login" | "register";
@@ -102,7 +103,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                   <Field
                     className={clsx(
                       "w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96",
-                      errors.email && "ring-red-500"
+                      errors.email && touched.email && "ring-red-500"
                     )}
                     type="email"
                     name="email"
@@ -111,7 +112,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                     required
                   />
                   {errors.email && touched.email && (
-                    <p className="max-w-fit text-red-500">{errors.email}</p>
+                    <ErrorMessage msg={errors.email} />
                   )}
                 </div>
                 <div className="flex flex-col gap-2">
@@ -119,7 +120,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                   <Field
                     className={clsx(
                       "w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96",
-                      errors.password && "ring-red-500"
+                      errors.password && touched.password && "ring-red-500"
                     )}
                     type="password"
                     name="password"
@@ -127,7 +128,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                     required
                   />
                   {errors.password && touched.password && (
-                    <p className="max-w-fit text-red-500">{errors.password}</p>
+                    <ErrorMessage msg={errors.password} />
                   )}
                 </div>
                 <div className="flex flex-col justify-between gap-y-2 lg:flex-row lg:items-center">
