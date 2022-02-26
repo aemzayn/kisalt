@@ -6,6 +6,7 @@ export const dashboard: string = "/dashboard";
 export const login: string = "/login";
 export const signup: string = "/signup";
 export const about: string = "/about";
+export const resetPassword: string = "/reset-password";
 
 export const checkAuth: string = "/api/auth/check-auth";
 export const loginApi: string = "/api/auth/login";

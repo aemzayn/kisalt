@@ -11,7 +11,7 @@ import {
   setSession,
 } from "lib/supabaseClient";
 import { EVENT_SIGN_IN } from "constants/common";
-import { dashboard } from "constants/paths";
+import { dashboard, resetPassword } from "constants/paths";
 import ErrorMessage from "./ErrorMessage";
 
 export type AuthFormProps = {
@@ -141,7 +141,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
                     />
                     <label htmlFor="remember">Remember me</label>
                   </div>
-                  <Link href="/">
+                  <Link href={resetPassword}>
                     <a className="font-medium text-violet-700 hover:text-violet-500">
                       Forgot your password?
                     </a>
