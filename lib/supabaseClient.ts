@@ -1,6 +1,7 @@
 import { ApiError, createClient, Session, User } from "@supabase/supabase-js";
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from "constants/common";
 import {
+  createNewUrlApi,
   HOME,
   loginApi,
   logOutApi,
@@ -103,6 +104,21 @@ export const sendResetEmail = async (email: string) => {
     method: "POST",
     credentials: "same-origin",
     body: JSON.stringify({ email }),
+  });
+  return await res.json();
+};
+
+export type NewUrl = {
+  slug: string;
+  realUrl: string;
+};
+
+export const createNewUrl = async (newUrl: NewUrl, userId: string) => {
+  const res = await fetch(createNewUrlApi(userId), {
+    ...defaultFetchOption,
+    method: "POST",
+    credentials: "same-origin",
+    body: JSON.stringify(newUrl),
   });
   return await res.json();
 };

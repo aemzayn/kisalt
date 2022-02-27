@@ -17,6 +17,7 @@ export const resetPasswordApi: string = "/api/auth/reset-password";
 
 export const FALLBACK: string = `${HOME}callback`;
 
+export const createNewUrlApi = (userId: string) => `/api/urls/new/${userId}`;
 export const getUrls = (id: string) => `/api/urls/get/${id}`;
 export const getClicks = (urlId: string) => `/api/clicks/get/${urlId}`;
 export const getMyDashboardApi = (userId: string) => `/api/me/${userId}`;

@@ -1,31 +1,46 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { newUrlValidationScheme } from "lib/validations";
 import ErrorMessage from "components/AuthForm/ErrorMessage";
+import { createNewUrl } from "lib/supabaseClient";
 
 export type Values = {
-  longUrl: string;
-  shortUrl: string;
+  realUrl: string;
+  slug: string;
 };
 
-export type NewUrlFormProps = {};
+export type NewUrlFormProps = {
+  userId: string;
+};
 
-export default function NewUrlForm({}: NewUrlFormProps) {
+export default function NewUrlForm({ userId }: NewUrlFormProps) {
   const handleSubmit = async (
     values: Values,
     { resetForm, setErrors }: FormikHelpers<Values>
   ) => {
-    alert(JSON.stringify(values));
-    resetForm();
+    try {
+      const {} = await createNewUrl(
+        {
+          slug: values.slug,
+          realUrl: values.realUrl,
+        },
+        userId
+      );
+    } catch (error) {
+      console.log(error);
+    } finally {
+      resetForm();
+    }
   };
 
   return (
     <Formik
       initialValues={{
-        longUrl: "",
-        shortUrl: "",
+        realUrl: "",
+        slug: "",
       }}
       onSubmit={handleSubmit}
       validationSchema={newUrlValidationScheme}
+      enableReinitialize
     >
       {({ errors, touched }) => (
         <Form className="col-span-12 grid grid-cols-12 gap-6">
@@ -33,27 +48,25 @@ export default function NewUrlForm({}: NewUrlFormProps) {
             <div className="flex h-16 items-center justify-center rounded-md border border-gray-200 bg-white p-2">
               <Field
                 type="url"
-                name="longUrl"
+                name="realUrl"
                 placeholder="Long url"
                 className="flex-1 border-0 ring-0"
               />
             </div>
-            {errors.longUrl && touched.longUrl && (
-              <ErrorMessage msg={errors.longUrl} />
+            {errors.realUrl && touched.realUrl && (
+              <ErrorMessage msg={errors.realUrl} />
             )}
           </div>
           <div className="col-span-3 flex flex-col gap-2">
             <div className="flex h-16 items-center justify-center rounded-md border border-gray-200 bg-white p-2">
               <Field
                 type="text"
-                name="shortUrl"
+                name="slug"
                 placeholder="Short url"
                 className="flex-1 border-0 ring-0"
               />
             </div>
-            {errors.shortUrl && touched.shortUrl && (
-              <ErrorMessage msg={errors.shortUrl} />
-            )}
+            {errors.slug && touched.slug && <ErrorMessage msg={errors.slug} />}
           </div>
           <button
             type="submit"

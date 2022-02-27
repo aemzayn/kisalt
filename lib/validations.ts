@@ -16,8 +16,12 @@ export const resetPasswordValidationScheme = object().shape({
 });
 
 export const newUrlValidationScheme = object().shape({
-  shortUrl: string()
+  slug: string()
     .min(2, "Must be longer than 2 characters.")
+    .matches(
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/gim,
+      "Slug cannot have spaces and only separated by dash (-)"
+    )
     .required("Required"),
-  longUrl: string().url("Must be a valid url.").required("Required"),
+  realUrl: string().url("Must be a valid url.").required("Required"),
 });

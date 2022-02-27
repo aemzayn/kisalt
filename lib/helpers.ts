@@ -33,3 +33,7 @@ export const callbackHandler = async () => {
     }
   }
 };
+
+export const sanitizeSlug = (slug: string) => {
+  return slug.replace(/[^0-9a-zA-Z.-]/g, "");
+};

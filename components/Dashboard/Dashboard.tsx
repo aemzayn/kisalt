@@ -14,6 +14,7 @@ export type DashboardProps = {};
 
 export default function Dashboard({}: DashboardProps) {
   const { user } = useAuthContext();
+  // TODO: 0 clicks url not showing up
   const { data, isLoading } = useDashboard(user?.id);
 
   if (isLoading) {
@@ -52,7 +53,7 @@ export default function Dashboard({}: DashboardProps) {
           <Table data={thisWeekClicks} />
           <TopLinksList data={urls} />
 
-          <NewUrlForm />
+          <NewUrlForm userId={user?.id} />
         </div>
 
         {data && urls && <ShortUrlList urls={urls} />}
