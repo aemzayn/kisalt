@@ -1,4 +1,3 @@
-import { getDayDifference } from "lib/date";
 import { supabase } from "lib/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -17,31 +16,10 @@ export default async function handler(
     data = data && data.filter((click) => click.user_id === user_id);
 
     if (error) {
-      console.error(error);
       res.statusCode = 400;
     } else {
       res.statusCode = 200;
     }
-
-    const isLast7Days = (date: Date) => {
-      const today = new Date();
-      return getDayDifference(date, today);
-    };
-
-    const totalClicks = data
-      ? data.reduce((acc, curr) => acc + curr.total_clicks, 0)
-      : 0;
-    // console.log(totalClicks);
-
-    // data &&
-    //   data.forEach((click) => {
-    //     const date = new Date(
-    //       click.click_year,
-    //       click.click_month,
-    //       click.click_day
-    //     );
-    //     console.log(isLast7Days(date));
-    //   });
 
     res.json({
       success: !!error,

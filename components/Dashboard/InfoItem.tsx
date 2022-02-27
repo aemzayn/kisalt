@@ -8,7 +8,7 @@ export type InfoItemProps = {
 
 const InfoItem = ({ count, text, Icon }: InfoItemProps) => {
   return (
-    <div className="col-span-4 flex h-32 items-center justify-between rounded-md bg-violet-200 px-6 shadow-sm">
+    <div className="col-span-12 flex h-32 items-center justify-between rounded-md bg-violet-200 px-6 shadow-sm md:col-span-4">
       <div className="flex flex-col gap-2">
         <p className="text-4xl font-bold">
           <CountUp end={count} duration={0.5} />

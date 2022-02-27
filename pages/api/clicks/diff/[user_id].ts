@@ -1,3 +1,5 @@
+import { Url } from "interfaces/Url";
+import { isValidDate } from "lib/date";
 import { supabase } from "lib/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -34,10 +36,22 @@ export default async function handler(
     let todayClicks = 0;
     const returnData = data && data.filter((click) => click.day_diff < 7);
     const last7DaysData = {};
-    const urls = [];
+    const urls =
+      data &&
+      data?.reduce((acc: Array<any>, curr) => {
+        const slug = curr.urls.slug;
+        if (!acc.hasOwnProperty(slug)) {
+          acc[slug] = { ...curr.urls, clicks: 1 };
+        } else {
+          acc[slug].clicks += 1;
+        }
+
+        return acc;
+      }, {});
 
     returnData?.forEach((click) => {
       const dateMonth = `${click.click_month}/${click.click_day}`;
+
       if (click.day_diff === 0) {
         todayClicks = todayClicks + 1;
       }
@@ -48,12 +62,39 @@ export default async function handler(
       }
     });
 
+    // from today (i = 0) to past 7 days
+    let thisWeekClicks = [];
+    let i = 0;
+    const DAYS_IN_WEEK = 7;
+    while (thisWeekClicks.length < DAYS_IN_WEEK) {
+      let d = new Date(2022, 3, 2);
+      let pastDate = new Date(d.setDate(d.getDate() - i));
+      const date = pastDate.getDate();
+      const month = pastDate.getMonth();
+      const dateMonth = `${month}/${date}`;
+      if (!isValidDate(date, month)) {
+        i += 1;
+        continue;
+      }
+      thisWeekClicks.push({
+        date: dateMonth,
+        clicks: last7DaysData[dateMonth] || 0,
+      });
+      i += 1;
+    }
+
+    const sortedUrls = Object.values(urls).sort(
+      (a: Url, b: Url) => b?.clicks - a?.clicks
+    );
+
     res.json({
       data:
         {
           last7DaysData,
           allClicks: returnData,
           todayClicks,
+          urls: sortedUrls || [],
+          thisWeekClicks: thisWeekClicks.reverse() || [],
         } || {},
       success: !!data,
       error,

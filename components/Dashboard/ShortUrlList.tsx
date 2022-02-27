@@ -11,8 +11,13 @@ export default function ShortUrlList({ urls }: LinkListProps) {
       <h1 className="text-4xl font-bold">My Links</h1>
       <div className="mt-6 grid grid-cols-3 gap-6">
         {urls &&
-          urls.map(({ id, slug, real_url }) => (
-            <LinkItem key={id} clicks={1} longUrl={real_url} shortUrl={slug} />
+          urls.map(({ id, slug, real_url, clicks }) => (
+            <LinkItem
+              key={id}
+              clicks={clicks}
+              longUrl={real_url}
+              shortUrl={slug}
+            />
           ))}
       </div>
     </section>
