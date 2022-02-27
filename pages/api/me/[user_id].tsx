@@ -67,23 +67,27 @@ export default async function handler(
 
     // from today (i = 0) to past 7 days
     let thisWeekClicks = [];
-    let i = 0;
+    let dayIterator = 0;
     const DAYS_IN_WEEK = 7;
+
     while (thisWeekClicks.length < DAYS_IN_WEEK) {
-      let d = new Date(2022, 3, 2);
-      let pastDate = new Date(d.setDate(d.getDate() - i));
+      let d = new Date();
+      let pastDate = new Date(d.setDate(d.getDate() - dayIterator));
       const date = pastDate.getDate();
-      const month = pastDate.getMonth();
+
+      // add 1 because if we don't pass value to
+      // Date constructor the month starts at 0
+      const month = pastDate.getMonth() + 1;
       const dateMonth = `${month}/${date}`;
       if (!isValidDate(date, month)) {
-        i += 1;
+        dayIterator += 1;
         continue;
       }
       thisWeekClicks.push({
         date: dateMonth,
         clicks: last7DaysData[dateMonth] || 0,
       });
-      i += 1;
+      dayIterator += 1;
     }
 
     const sortedUrls = Object.values(urls).sort(
