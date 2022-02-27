@@ -10,7 +10,7 @@ export default async function handler(
   try {
     const { user_id } = req.query;
     const { data, error } = await supabase
-      .from("day_diff")
+      .from("dashboard")
       .select(
         `
         id,
@@ -18,11 +18,9 @@ export default async function handler(
         day_diff,
         click_day,
         click_month,
-        urls (
-          id,
-          slug,
-          real_url
-        )
+        url_id,
+        slug,
+        real_url
       `
       )
       .eq("user_id", user_id);
@@ -39,9 +37,14 @@ export default async function handler(
     const urls =
       data &&
       data?.reduce((acc: Array<any>, curr) => {
-        const slug = curr.urls.slug;
+        const slug = curr.slug;
         if (!acc.hasOwnProperty(slug)) {
-          acc[slug] = { ...curr.urls, clicks: 1 };
+          acc[slug] = {
+            id: curr.url_id,
+            slug: curr.slug,
+            real_url: curr.real_url,
+            clicks: 1,
+          };
         } else {
           acc[slug].clicks += 1;
         }

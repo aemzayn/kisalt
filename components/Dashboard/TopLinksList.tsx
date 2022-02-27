@@ -12,7 +12,7 @@ export default function TopLinksList({ data }: TopLinksListProps) {
         <hr />
         <ol>
           {data &&
-            data.map((url, index) => (
+            data.slice(0, 5).map((url, index) => (
               <li key={url.id} className="flex items-start justify-between">
                 <div className="text-gray-400">{index + 1}.</div>
                 <div className="flex flex-1 flex-col gap-1 pl-2">

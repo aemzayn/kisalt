@@ -19,7 +19,7 @@ export const FALLBACK: string = `${HOME}callback`;
 
 export const getUrls = (id: string) => `/api/urls/get/${id}`;
 export const getClicks = (urlId: string) => `/api/clicks/get/${urlId}`;
-export const getDashboardApi = (userId: string) => `/api/all/get/${userId}`;
+export const getMyDashboardApi = (userId: string) => `/api/me/${userId}`;
 
 export const headerLinks: HeaderLink[] = [
   { route: "/about", label: "About", type: "link" },

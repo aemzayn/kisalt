@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -71,7 +72,17 @@ export default function Table({ data }: TableProps) {
 
   return (
     <div className="min-h-56 col-span-12 flex items-center justify-center rounded-md border border-gray-200 bg-white p-4 lg:col-span-8">
-      {data && <Line data={tableData} options={options} />}
+      {data && (
+        <Suspense
+          fallback={
+            <div className="flex w-full items-center justify-center">
+              Loading...
+            </div>
+          }
+        >
+          <Line data={tableData} options={options} />
+        </Suspense>
+      )}
     </div>
   );
 }
