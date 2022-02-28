@@ -54,7 +54,7 @@ export default function Chart({ userId }: TableProps) {
   }
   const data: ChartData[] = chartData && chartData.data;
 
-  const labels = data?.map((d) => d.date) || [];
+  const labels: string[] = data?.map((d) => d.date) || [];
   const datasets = [
     {
       label: "Date",
@@ -87,6 +87,7 @@ export default function Chart({ userId }: TableProps) {
           borderColor: TABLE_STYLES.borderColor,
           borderWidth: 1,
         },
+        min: 0,
       },
       x: {
         title: {
