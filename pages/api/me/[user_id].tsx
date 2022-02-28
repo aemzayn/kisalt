@@ -1,5 +1,3 @@
-import { Url } from "interfaces/Url";
-import { isValidDate } from "lib/date";
 import { supabase } from "lib/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,17 +8,18 @@ export default async function handler(
   try {
     const { user_id } = req.query;
     const { data, error } = await supabase
-      .from("dashboard")
+      .from("urls_data")
       .select(
         `
-        id,
-        user_id,
-        day_diff,
-        click_day,
-        click_month,
         url_id,
+        user_id,
+        click_id,
         slug,
-        real_url
+        real_url,
+        click_year,
+        click_month,
+        click_day,
+        day_diff
       `
       )
       .eq("user_id", user_id);
@@ -31,86 +30,50 @@ export default async function handler(
       res.statusCode = 200;
     }
 
-    let todayClicks = 0;
-    const returnData = data && data.filter((click) => click.day_diff < 7);
-    const last7DaysData = {};
-    const urls =
-      data &&
-      data?.reduce((acc: Array<any>, curr) => {
-        const slug = curr.slug;
-        if (!acc.hasOwnProperty(slug)) {
-          acc[slug] = {
-            id: curr.url_id,
-            slug: curr.slug,
-            real_url: curr.real_url,
-            clicks: 1,
-          };
-        } else {
-          acc[slug].clicks += 1;
+    let todayClicks: number = 0;
+    let urls: any = {};
+    let totalClicks: number = 0;
+
+    if (data) {
+      data.forEach((url) => {
+        if (url?.click_id) {
+          totalClicks++;
+
+          // day_diff is day difference
+          // relative to today
+          if (url?.day_diff === 0) {
+            todayClicks++;
+          }
         }
 
-        return acc;
-      }, {});
-
-    returnData?.forEach((click) => {
-      const dateMonth = `${click.click_month}/${click.click_day}`;
-
-      if (click.day_diff === 0) {
-        todayClicks = todayClicks + 1;
-      }
-      if (last7DaysData[dateMonth]) {
-        last7DaysData[dateMonth] += 1;
-      } else {
-        last7DaysData[dateMonth] = 1;
-      }
-    });
-
-    // from today (i = 0) to past 7 days
-    let thisWeekClicks = [];
-    let dayIterator = 0;
-    const DAYS_IN_WEEK = 7;
-
-    while (thisWeekClicks.length < DAYS_IN_WEEK) {
-      let d = new Date();
-      let pastDate = new Date(d.setDate(d.getDate() - dayIterator));
-      const date = pastDate.getDate();
-
-      // add 1 because if we don't pass value to
-      // Date constructor the month starts at 0
-      const month = pastDate.getMonth() + 1;
-      const dateMonth = `${month}/${date}`;
-      if (!isValidDate(date, month)) {
-        dayIterator += 1;
-        continue;
-      }
-      thisWeekClicks.push({
-        date: dateMonth,
-        clicks: last7DaysData[dateMonth] || 0,
+        if (!urls.hasOwnProperty(url.slug)) {
+          urls[url.slug] = {
+            id: url.url_id,
+            slug: url.slug,
+            real_url: url.real_url,
+            clicks: url.click_id ? 1 : 0,
+          };
+        } else {
+          urls[url.slug].clicks += 1;
+        }
       });
-      dayIterator += 1;
     }
 
-    const sortedUrls = Object.values(urls).sort(
-      (a: Url, b: Url) => b?.clicks - a?.clicks
-    );
-
     res.json({
-      data:
-        {
-          last7DaysData,
-          allClicks: returnData,
-          todayClicks,
-          urls: sortedUrls || [],
-          thisWeekClicks: thisWeekClicks.reverse() || [],
-        } || {},
-      success: !!data,
       error,
+      data: {
+        todayClicks,
+        urls: Object.values(urls).sort((a: any, b: any) => a?.id - b?.id) || [],
+        totalClicks,
+      },
+      success: !!error,
     });
   } catch (error) {
     res.statusCode = 500;
     res.json({
       error,
       success: false,
+      data: null,
     });
   }
 }

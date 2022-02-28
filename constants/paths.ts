@@ -21,6 +21,8 @@ export const createNewUrlApi = (userId: string) => `/api/urls/new/${userId}`;
 export const getUrls = (id: string) => `/api/urls/get/${id}`;
 export const getClicks = (urlId: string) => `/api/clicks/get/${urlId}`;
 export const getMyDashboardApi = (userId: string) => `/api/me/${userId}`;
+export const getChartDataApi = (userId: string) =>
+  `/api/clicks/chart/${userId}`;
 
 export const headerLinks: HeaderLink[] = [
   { route: "/about", label: "About", type: "link" },

@@ -6,3 +6,8 @@ export interface DashboardData {
   clicks: Click[];
   totalClicks: number;
 }
+
+export interface ChartData {
+  date: string;
+  clicks: number;
+}

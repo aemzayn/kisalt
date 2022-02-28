@@ -7,21 +7,20 @@ import { useAuthContext } from "context/AuthContext";
 import useDashboard from "hooks/useDashboard";
 import ShortUrlList from "./ShortUrlList";
 import NewUrlForm from "./NewUrlForm";
-import Table from "components/Table/Table";
+import Chart from "components/Chart";
 import TopLinksList from "./TopLinksList";
 
 export type DashboardProps = {};
 
 export default function Dashboard({}: DashboardProps) {
   const { user } = useAuthContext();
-  // TODO: 0 clicks url not showing up
   const { data, isLoading } = useDashboard(user?.id);
 
   if (isLoading) {
     return <></>;
   }
 
-  const { todayClicks, thisWeekClicks, urls, allClicks } = data?.data;
+  const { todayClicks, urls, totalClicks } = data?.data;
 
   const infos: InfoItemProps[] = data && [
     {
@@ -30,7 +29,7 @@ export default function Dashboard({}: DashboardProps) {
       Icon: LinkIcon,
     },
     {
-      count: allClicks ? allClicks.length : 0,
+      count: totalClicks,
       text: "TOTAL CLICKS",
       Icon: TrendingUpIcon,
     },
@@ -50,7 +49,7 @@ export default function Dashboard({}: DashboardProps) {
               <InfoItem key={text} text={text} count={count} Icon={Icon} />
             ))}
 
-          <Table data={thisWeekClicks} />
+          <Chart userId={user?.id} />
           <TopLinksList data={urls} />
 
           <NewUrlForm userId={user?.id} />

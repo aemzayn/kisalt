@@ -26,7 +26,6 @@ export default function NewUrlForm({ userId }: NewUrlFormProps) {
         userId
       );
     } catch (error) {
-      console.log(error);
     } finally {
       resetForm();
     }
