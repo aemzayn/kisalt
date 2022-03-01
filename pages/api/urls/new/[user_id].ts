@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   try {
     const { user_id } = req.query;
-    const { slug, realUrl } = req.body;
+    let { slug, realUrl } = req.body;
 
     const isValidUrl = await newUrlValidationScheme.isValid({ slug, realUrl });
     if (!isValidUrl) {

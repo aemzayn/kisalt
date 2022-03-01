@@ -76,7 +76,7 @@ export default function AuthForm({ type = "login" }: AuthFormProps) {
   };
 
   return (
-    <div className="min-h-hero h-hero bg-gradient-to-b from-violet-200 to-violet-100 pt-5 pb-10">
+    <div className="h-hero flex items-center justify-center bg-gradient-to-b from-violet-200 to-violet-100">
       <Container height="full">
         <div className="flex h-full flex-col items-center pt-10 md:justify-center md:pt-0">
           <div className="text-center">

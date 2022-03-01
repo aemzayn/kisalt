@@ -27,7 +27,7 @@ export type TableProps = {
   userId: string;
 };
 
-export const TABLE_STYLES = {
+export const TABLE_STYLES: Record<string, string> = {
   borderColor: "#e9d5ff",
   lineColor: "#6d28d9",
 };

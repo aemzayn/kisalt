@@ -1,17 +1,17 @@
 import { NextSeo } from "next-seo";
 
-import CommonLayout from "../components/Layout/Layout";
-import HomeHero from "components/Home/HomeHero";
+import Layout from "../components/Layout/Layout";
+import HeroWrapper from "components/Home/HeroWrapper";
 import HomeInfo from "components/Home/HomeInfo";
 
 export default function HomePage() {
   return (
-    <CommonLayout>
+    <Layout>
       <NextSeo title="Home" />
       <div className="bg-violet-100">
-        <HomeHero />
+        <HeroWrapper />
         <HomeInfo />
       </div>
-    </CommonLayout>
+    </Layout>
   );
 }

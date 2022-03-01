@@ -4,11 +4,25 @@ export const emailValidation = string()
   .email("Invalid email")
   .required("Email is required");
 
+export const urlValidation = string()
+  .url("Must be a valid url.")
+  .required("Required");
+
+export const slugValidation = string()
+  .min(2, "Must be longer than 2 characters.")
+  .matches(
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/gim,
+    "Slug cannot have spaces and only separated by dash (-)"
+  )
+  .required("Required");
+
+export const passwordValidation = string()
+  .min(6, "Must be at least 6 characters")
+  .required("Password cannot be empty.");
+
 export const authValidationScheme = object().shape({
   email: emailValidation,
-  password: string()
-    .min(6, "Must be at least 6 characters")
-    .required("Password cannot be empty."),
+  password: passwordValidation,
 });
 
 export const resetPasswordValidationScheme = object().shape({
@@ -16,12 +30,10 @@ export const resetPasswordValidationScheme = object().shape({
 });
 
 export const newUrlValidationScheme = object().shape({
-  slug: string()
-    .min(2, "Must be longer than 2 characters.")
-    .matches(
-      /^[a-z0-9]+(?:-[a-z0-9]+)*$/gim,
-      "Slug cannot have spaces and only separated by dash (-)"
-    )
-    .required("Required"),
-  realUrl: string().url("Must be a valid url.").required("Required"),
+  slug: slugValidation,
+  realUrl: urlValidation,
+});
+
+export const heroInputValidationScheme = object().shape({
+  realUrl: urlValidation,
 });

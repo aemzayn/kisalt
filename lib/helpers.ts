@@ -5,6 +5,7 @@ import {
   EVENT_SIGN_IN,
 } from "constants/common";
 import { dashboard, login } from "constants/paths";
+import { customAlphabet } from "nanoid";
 import { setSession } from "./supabaseClient";
 
 export const callbackHandler = async () => {
@@ -30,10 +31,23 @@ export const callbackHandler = async () => {
           window.location.assign(dashboard);
         }, 500);
       }
+    } else {
+      setTimeout(() => {
+        window.location.assign("/404");
+      }, 500);
     }
   }
 };
 
 export const sanitizeSlug = (slug: string) => {
   return slug.replace(/[^0-9a-zA-Z.-]/g, "");
+};
+
+const nanoid = customAlphabet(
+  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  7
+);
+
+export const generateRandomSlug = () => {
+  return nanoid();
 };

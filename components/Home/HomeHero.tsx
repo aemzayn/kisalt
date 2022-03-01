@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { useRef, useEffect } from "react";
 import Container from "../Container/Container";
+import HeroInput from "./HeroInput";
+import { User } from "interfaces/User";
 
-type Props = {};
+export type HomeHeroProps = {
+  isLogin: boolean;
+  user: User;
+};
 
-export default function HomeHero({}: Props) {
-  const inputRef = useRef(null);
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+export default function HomeHero({ isLogin, user }: HomeHeroProps) {
   return (
     <section
       id="hero-section"
-      className="lg:h-hero bg-gradient-to-b  from-violet-200 to-violet-100 pt-10"
+      className="lg:h-hero flex  items-center justify-center bg-gradient-to-b from-violet-200 to-violet-100 pt-10"
     >
       <Container height="full">
         <div className="flex h-full flex-col md:flex-row lg:px-2">
@@ -31,17 +31,7 @@ export default function HomeHero({}: Props) {
               Link Management Platform with all features you need in one place.
               Shorten, brand, manage and track your links the easy way.
             </p>
-            <div className="rounded-full bg-white py-2 px-3 ring-2 ring-violet-300">
-              <input
-                ref={inputRef}
-                type="url"
-                className="border-none placeholder:text-sm placeholder:text-violet-500 focus:ring-0"
-                placeholder="Paste long link"
-              />
-              <button className="rounded-full bg-violet-800 px-5 py-2 text-violet-50 duration-75 hover:bg-opacity-90">
-                Shorten
-              </button>
-            </div>
+            <HeroInput isLogin={isLogin} user={user} />
           </div>
           <div className="hidden flex-1 flex-col items-center justify-center lg:flex">
             <Image
