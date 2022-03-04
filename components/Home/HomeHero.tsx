@@ -8,7 +8,7 @@ export default function HomeHero({}: HomeHeroProps) {
   return (
     <section
       id="hero-section"
-      className="lg:h-hero flex  items-center justify-center bg-gradient-to-b from-violet-200 to-violet-100 pt-10"
+      className="lg:h-hero flex  items-center justify-center bg-gradient-to-b from-violet-200 to-violet-100"
     >
       <Container height="full">
         <div className="flex h-full flex-col md:flex-row lg:px-2">

@@ -1,0 +1,22 @@
+# or GoogleBot only
+User-agent: Googlebot
+Disallow: /dashboard
+Disallow: /set-new-password
+Disallow: /*
+Allow: /about
+Allow: /login
+Allow: /register
+Allow: /reset-password
+Allow: /manifest.json
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /_next/*
+Allow: /images/*
+Allow: /workbox-*
+Allow: /$
+
+# All UA
+User-agent: *
+Allow: /
+
+Sitemap: http://kisalt.one/sitemap.xml

@@ -8,10 +8,6 @@
   }
 }
 
-body {
-  min-height: 100vh;
-}
-
 body.no-scroll {
   @apply h-full overflow-y-hidden;
 }
