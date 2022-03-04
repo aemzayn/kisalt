@@ -1,9 +1,9 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo'
 
-import AuthLayout from "components/Layout/AuthLayout";
-import RegisterWrapper from "components/RegisterWrapper";
+import AuthLayout from 'components/Layout/AuthLayout'
+import RegisterWrapper from 'components/RegisterWrapper'
 
-export type RegisterPageProps = {};
+export type RegisterPageProps = {}
 
 export default function Register({}: RegisterPageProps) {
   return (
@@ -11,5 +11,5 @@ export default function Register({}: RegisterPageProps) {
       <NextSeo title="Sign Up to Kisalt" />
       <RegisterWrapper />
     </AuthLayout>
-  );
+  )
 }

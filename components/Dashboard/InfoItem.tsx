@@ -1,10 +1,10 @@
-import CountUp from "react-countup";
+import CountUp from 'react-countup'
 
 export type InfoItemProps = {
-  count: number;
-  text: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
+  count: number
+  text: string
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}
 
 const InfoItem = ({ count, text, Icon }: InfoItemProps) => {
   return (
@@ -19,7 +19,7 @@ const InfoItem = ({ count, text, Icon }: InfoItemProps) => {
         <Icon className="h-5 w-5" />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default InfoItem;
+export default InfoItem

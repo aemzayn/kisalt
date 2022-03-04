@@ -1,8 +1,8 @@
-import { Url } from "interfaces/Url";
+import { Url } from 'interfaces/Url'
 
 export type TopLinksListProps = {
-  data: Url[];
-};
+  data: Url[]
+}
 
 export default function TopLinksList({ data }: TopLinksListProps) {
   return (
@@ -25,5 +25,5 @@ export default function TopLinksList({ data }: TopLinksListProps) {
         </ol>
       </div>
     </section>
-  );
+  )
 }

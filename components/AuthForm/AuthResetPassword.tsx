@@ -1,36 +1,36 @@
-import { useState } from "react";
-import clsx from "clsx";
-import { FormikHelpers, Formik, Form, Field } from "formik";
+import { useState } from 'react'
+import clsx from 'clsx'
+import { FormikHelpers, Formik, Form, Field } from 'formik'
 
-import PageContainer from "components/Container/PageContainer";
-import { sendResetEmail } from "lib/supabaseClient";
-import { resetPasswordValidationScheme } from "lib/validations";
+import PageContainer from 'components/Container/PageContainer'
+import { sendResetEmail } from 'lib/supabaseClient'
+import { resetPasswordValidationScheme } from 'lib/validations'
 
 type Values = {
-  email: string;
-};
+  email: string
+}
 
-export type AuthResetPasswordProps = {};
+export type AuthResetPasswordProps = {}
 
 export default function AuthResetPassword({}: AuthResetPasswordProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (
     { email }: Values,
     { resetForm, setErrors }: FormikHelpers<Values>
   ) => {
-    setIsSubmitting(true);
-    const { error } = await sendResetEmail(email);
+    setIsSubmitting(true)
+    const { error } = await sendResetEmail(email)
 
     if (error) {
       setErrors({
         email: error.message,
-      });
+      })
     }
-    setIsSubmitting(false);
+    setIsSubmitting(false)
 
-    !error && resetForm();
-  };
+    !error && resetForm()
+  }
 
   return (
     <PageContainer height="screen">
@@ -41,7 +41,7 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
         </p>
         <Formik
           initialValues={{
-            email: "",
+            email: '',
           }}
           onSubmit={handleSubmit}
           validationSchema={resetPasswordValidationScheme}
@@ -52,8 +52,8 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
                 <label htmlFor="email">Email address</label>
                 <Field
                   className={clsx(
-                    "w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96",
-                    errors.email && "ring-red-500"
+                    'w-80 rounded-md ring-1 ring-violet-300 focus:ring-violet-500 lg:w-96',
+                    errors.email && 'ring-red-500'
                   )}
                   type="email"
                   name="email"
@@ -68,8 +68,8 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
               <button
                 type="submit"
                 className={clsx(
-                  "rounded-md bg-violet-900 py-2 text-violet-50 duration-150 hover:bg-opacity-80 disabled:bg-violet-400",
-                  !isSubmitting ? "cursor-pointer" : "cursor-not-allowed"
+                  'rounded-md bg-violet-900 py-2 text-violet-50 duration-150 hover:bg-opacity-80 disabled:bg-violet-400',
+                  !isSubmitting ? 'cursor-pointer' : 'cursor-not-allowed'
                 )}
                 disabled={isSubmitting}
               >
@@ -80,5 +80,5 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
         </Formik>
       </main>
     </PageContainer>
-  );
+  )
 }

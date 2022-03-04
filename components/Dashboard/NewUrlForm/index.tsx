@@ -1,16 +1,16 @@
-import { Formik, Form, Field, FormikHelpers } from "formik";
-import { newUrlValidationScheme } from "lib/validations";
-import ErrorMessage from "components/AuthForm/ErrorMessage";
-import { createNewUrl } from "lib/supabaseClient";
+import { Formik, Form, Field, FormikHelpers } from 'formik'
+import { newUrlValidationScheme } from 'lib/validations'
+import ErrorMessage from 'components/AuthForm/ErrorMessage'
+import { createNewUrl } from 'lib/supabaseClient'
 
 export type Values = {
-  realUrl: string;
-  slug: string;
-};
+  realUrl: string
+  slug: string
+}
 
 export type NewUrlFormProps = {
-  userId: string;
-};
+  userId: string
+}
 
 export default function NewUrlForm({ userId }: NewUrlFormProps) {
   const handleSubmit = async (
@@ -24,18 +24,18 @@ export default function NewUrlForm({ userId }: NewUrlFormProps) {
           realUrl: values.realUrl,
         },
         userId
-      );
+      )
     } catch (error) {
     } finally {
-      resetForm();
+      resetForm()
     }
-  };
+  }
 
   return (
     <Formik
       initialValues={{
-        realUrl: "",
-        slug: "",
+        realUrl: '',
+        slug: '',
       }}
       onSubmit={handleSubmit}
       validationSchema={newUrlValidationScheme}
@@ -76,5 +76,5 @@ export default function NewUrlForm({ userId }: NewUrlFormProps) {
         </Form>
       )}
     </Formik>
-  );
+  )
 }

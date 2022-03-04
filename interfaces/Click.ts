@@ -1,8 +1,8 @@
 export interface Click {
-  id?: number;
-  user_id?: string;
+  id?: number
+  user_id?: string
   urls?: {
-    id?: string;
-  };
-  created_at?: Date;
+    id?: string
+  }
+  created_at?: Date
 }

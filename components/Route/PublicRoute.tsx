@@ -1,27 +1,27 @@
-import { useRouter } from "next/router";
-import { dashboard } from "constants/paths";
-import { useAuthContext } from "context/AuthContext";
-import LoadingPage from "components/Loading/LoadingPage";
+import { useRouter } from 'next/router'
+import { dashboard } from 'constants/paths'
+import { useAuthContext } from 'context/AuthContext'
+import LoadingPage from 'components/Loading/LoadingPage'
 
 export type PublicRouteProps = {
-  children: React.ReactNode;
-  redirectPath?: string;
-};
+  children: React.ReactNode
+  redirectPath?: string
+}
 
 export default function PublicRoute({
   children,
   redirectPath = dashboard,
 }: PublicRouteProps) {
-  const router = useRouter();
-  const { isLoading, isLogin } = useAuthContext();
+  const router = useRouter()
+  const { isLoading, isLogin } = useAuthContext()
 
   if (!isLoading) {
     if (!isLogin) {
-      return <>{children}</>;
+      return <>{children}</>
     } else {
-      router.push(redirectPath);
+      router.push(redirectPath)
     }
   }
 
-  return <LoadingPage />;
+  return <LoadingPage />
 }

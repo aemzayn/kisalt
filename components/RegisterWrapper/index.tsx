@@ -1,13 +1,13 @@
-import PublicRoute from "components/Route/PublicRoute";
-import { dashboard } from "constants/paths";
-import AuthForm from "../AuthForm/AuthForm";
+import PublicRoute from 'components/Route/PublicRoute'
+import { dashboard } from 'constants/paths'
+import AuthForm from '../AuthForm/AuthForm'
 
-export type RegisterWrapperProps = {};
+export type RegisterWrapperProps = {}
 
 export default function RegisterWrapper({}: RegisterWrapperProps) {
   return (
     <PublicRoute redirectPath={dashboard}>
-      <AuthForm type="register" />
+      <AuthForm formType="register" />
     </PublicRoute>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { AuthProvider } from "context/AuthContext";
-import AuthHeader from "components/Header/AuthHeader";
+import { AuthProvider } from 'context/AuthContext'
+import AuthHeader from 'components/Header/AuthHeader'
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export default function AuthLayout({ children }: Props) {
   return (
@@ -14,5 +14,5 @@ export default function AuthLayout({ children }: Props) {
         {children}
       </div>
     </AuthProvider>
-  );
+  )
 }

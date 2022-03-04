@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { LogoutIcon } from "@heroicons/react/outline";
+import Link from 'next/link'
+import { LogoutIcon } from '@heroicons/react/outline'
 
-import { logOut } from "lib/supabaseClient";
-import NeutralHeader from "./NeutralHeader";
-import Header from "./Header";
-import { useAuthContext } from "context/AuthContext";
+import { logOut } from 'lib/supabaseClient'
+import NeutralHeader from './NeutralHeader'
+import Header from './Header'
+import { useAuthContext } from 'context/AuthContext'
 
-export type AuthHeaderProps = {};
+export type AuthHeaderProps = {}
 
 export default function AuthHeader({}: AuthHeaderProps) {
-  const { isLogin, isLoading } = useAuthContext();
+  const { isLogin, isLoading } = useAuthContext()
 
   if (!isLoading) {
     if (isLogin) {
@@ -27,16 +27,16 @@ export default function AuthHeader({}: AuthHeaderProps) {
               onClick={logOut}
               className="group flex items-center gap-2 rounded-full bg-gray-200 px-5 py-2 text-violet-800 duration-150 hover:bg-gray-300"
             >
-              Log Out{" "}
+              Log Out{' '}
               <LogoutIcon className="h-5 w-5 text-gray-400 duration-150 group-hover:text-violet-500" />
             </button>
           </div>
         </div>
-      );
+      )
     } else {
-      return <Header />;
+      return <Header />
     }
   }
 
-  return <NeutralHeader />;
+  return <NeutralHeader />
 }

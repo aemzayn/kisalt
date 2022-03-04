@@ -1,5 +1,5 @@
-export type LoadingPageProps = {};
+export type LoadingPageProps = {}
 
 export default function LoadingPage({}: LoadingPageProps) {
-  return <div className="h-hero bg-violet-100"></div>;
+  return <div className="h-hero bg-violet-100"></div>
 }

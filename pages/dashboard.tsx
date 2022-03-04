@@ -1,9 +1,9 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo'
 
-import AuthLayout from "components/Layout/AuthLayout";
-import DashboardWrapper from "components/Dashboard/DashboardWrapper";
+import AuthLayout from 'components/Layout/AuthLayout'
+import DashboardWrapper from 'components/Dashboard/DashboardWrapper'
 
-export type DashboardPageProps = {};
+export type DashboardPageProps = {}
 
 export const Dashboard = ({}: DashboardPageProps) => {
   return (
@@ -11,7 +11,7 @@ export const Dashboard = ({}: DashboardPageProps) => {
       <NextSeo title="Dashboard" />
       <DashboardWrapper />
     </AuthLayout>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

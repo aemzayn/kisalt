@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function NeutralHeader() {
   return (
@@ -12,5 +12,5 @@ export default function NeutralHeader() {
         </Link>
       </div>
     </div>
-  );
+  )
 }

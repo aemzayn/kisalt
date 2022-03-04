@@ -1,15 +1,15 @@
-import { NextSeo } from "next-seo";
-import { useEffect } from "react";
-import Container from "components/Container/Container";
-import CommonLayout from "components/Layout/Layout";
-import { callbackHandler } from "lib/helpers";
+import { NextSeo } from 'next-seo'
+import { useEffect } from 'react'
+import Container from 'components/Container/Container'
+import CommonLayout from 'components/Layout/Layout'
+import { callbackHandler } from 'lib/helpers'
 
 export default function Callback() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      callbackHandler();
+    if (typeof window !== 'undefined') {
+      callbackHandler()
     }
-  }, []);
+  }, [])
 
   return (
     <CommonLayout>
@@ -23,5 +23,5 @@ export default function Callback() {
         </Container>
       </div>
     </CommonLayout>
-  );
+  )
 }

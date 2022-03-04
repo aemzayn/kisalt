@@ -1,6 +1,6 @@
-import Container from "../Container/Container";
+import Container from '../Container/Container'
 
-type Props = {};
+type Props = {}
 
 export default function HomeInfo({}: Props) {
   return (
@@ -23,5 +23,5 @@ export default function HomeInfo({}: Props) {
         </div>
       </Container>
     </section>
-  );
+  )
 }

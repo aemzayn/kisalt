@@ -1,12 +1,12 @@
-import Image from "next/image";
-import Container from "../Container/Container";
-import HeroInput from "./HeroInput";
-import { User } from "interfaces/User";
+import Image from 'next/image'
+import Container from '../Container/Container'
+import HeroInput from './HeroInput'
+import { User } from 'interfaces/User'
 
 export type HomeHeroProps = {
-  isLogin: boolean;
-  user: User;
-};
+  isLogin: boolean
+  user: User
+}
 
 export default function HomeHero({ isLogin, user }: HomeHeroProps) {
   return (
@@ -18,7 +18,7 @@ export default function HomeHero({ isLogin, user }: HomeHeroProps) {
         <div className="flex h-full flex-col md:flex-row lg:px-2">
           <div className="flex flex-1 flex-col items-center justify-center gap-y-5 py-10 text-center lg:items-start  lg:gap-y-8 lg:text-left">
             <h1 className="relative z-[1] text-3xl font-bold leading-tight md:text-4xl lg:text-5xl ">
-              {["Shorten URLs are", "now made easier"].map((t, i) => (
+              {['Shorten URLs are', 'now made easier'].map((t, i) => (
                 <span
                   key={i}
                   className="relative inline-block after:absolute after:inset-x-0 after:bottom-1 after:z-[-1] after:h-4 after:w-full after:bg-violet-300 after:content-[''] last:ml-2 lg:last:ml-0"
@@ -44,5 +44,5 @@ export default function HomeHero({ isLogin, user }: HomeHeroProps) {
         </div>
       </Container>
     </section>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo'
 
-import Layout from "../components/Layout/Layout";
-import HeroWrapper from "components/Home/HeroWrapper";
-import HomeInfo from "components/Home/HomeInfo";
+import Layout from '../components/Layout/Layout'
+import HeroWrapper from 'components/Home/HeroWrapper'
+import HomeInfo from 'components/Home/HomeInfo'
 
 export default function HomePage() {
   return (
@@ -13,5 +13,5 @@ export default function HomePage() {
         <HomeInfo />
       </div>
     </Layout>
-  );
+  )
 }

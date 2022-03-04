@@ -1,25 +1,25 @@
-import Link from "next/link";
-import { Field, Form, Formik, FormikHelpers } from "formik";
+import Link from 'next/link'
+import { Field, Form, Formik, FormikHelpers } from 'formik'
 import {
   LinkIcon,
   ExclamationCircleIcon,
   LogoutIcon,
-} from "@heroicons/react/solid";
+} from '@heroicons/react/solid'
 
-import Spinner from "components/Spinner";
-import { generateRandomSlug } from "lib/helpers";
-import { heroInputValidationScheme } from "lib/validations";
-import { createNewUrl } from "lib/supabaseClient";
-import { User } from "interfaces/User";
+import Spinner from 'components/Spinner'
+import { generateRandomSlug } from 'lib/helpers'
+import { heroInputValidationScheme } from 'lib/validations'
+import { createNewUrl } from 'lib/supabaseClient'
+import { User } from 'interfaces/User'
 
 export type HeroInputProps = {
-  isLogin: boolean;
-  user: User;
-};
+  isLogin: boolean
+  user: User
+}
 
 export type Values = {
-  realUrl: string;
-};
+  realUrl: string
+}
 
 export default function HeroInput({ isLogin, user }: HeroInputProps) {
   const handleSubmit = async (
@@ -27,26 +27,26 @@ export default function HeroInput({ isLogin, user }: HeroInputProps) {
     { setFieldError, setSubmitting }: FormikHelpers<Values>
   ) => {
     try {
-      const slug = generateRandomSlug();
+      const slug = generateRandomSlug()
 
       if (isLogin && user) {
-        console.log({ realUrl, slug });
+        console.log({ realUrl, slug })
         // const {} = await createNewUrl({
         //   realUrl, slug
         // }, user.id)
       } else {
-        setFieldError("realUrl", "You are not logged in, please log in first.");
+        setFieldError('realUrl', 'You are not logged in, please log in first.')
       }
     } catch (error) {
-      setFieldError("realUrl", error);
+      setFieldError('realUrl', error)
     }
-  };
+  }
 
   return (
     <div className="flex flex-col gap-3">
       <Formik
         initialValues={{
-          realUrl: "",
+          realUrl: '',
         }}
         onSubmit={handleSubmit}
         validationSchema={heroInputValidationScheme}
@@ -85,8 +85,8 @@ export default function HeroInput({ isLogin, user }: HeroInputProps) {
               )}
               {!errors.realUrl && (
                 <p className="flex items-center gap-2 text-sm text-violet-500">
-                  <LinkIcon className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-300 p-1 text-violet-900" />{" "}
-                  Create new short url with{" "}
+                  <LinkIcon className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-300 p-1 text-violet-900" />{' '}
+                  Create new short url with{' '}
                   <span className="font-semibold underline underline-offset-2">
                     random slug
                   </span>
@@ -97,5 +97,5 @@ export default function HeroInput({ isLogin, user }: HeroInputProps) {
         )}
       </Formik>
     </div>
-  );
+  )
 }

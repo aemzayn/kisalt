@@ -1,46 +1,46 @@
-import { useState } from "react";
-import Link from "next/link";
-import clsx from "clsx";
+import { useState } from 'react'
+import Link from 'next/link'
+import clsx from 'clsx'
 
-import { MenuIcon, XIcon } from "@heroicons/react/solid";
-import MobileNav from "components/Nav/MobileNav";
-import Nav from "components/Nav";
+import { MenuIcon, XIcon } from '@heroicons/react/solid'
+import MobileNav from 'components/Nav/MobileNav'
+import Nav from 'components/Nav'
 
-export type HeaderProps = {};
+export type HeaderProps = {}
 
 export default function Header({}: HeaderProps) {
-  const [headerOpen, setOpen] = useState(false);
+  const [headerOpen, setOpen] = useState(false)
 
   const toggleMobileHeader = (status: boolean) => {
-    const body = document.body;
-    const html = document.documentElement;
-    const cover = document.getElementById("cover");
+    const body = document.body
+    const html = document.documentElement
+    const cover = document.getElementById('cover')
     if (status) {
-      html.classList.add("no-scroll");
-      body.classList.add("no-scroll");
-      cover.classList.add("open");
+      html.classList.add('no-scroll')
+      body.classList.add('no-scroll')
+      cover.classList.add('open')
     } else {
-      html.classList.remove("no-scroll");
-      body.classList.remove("no-scroll");
-      cover.classList.remove("open");
+      html.classList.remove('no-scroll')
+      body.classList.remove('no-scroll')
+      cover.classList.remove('open')
     }
-    setOpen(status);
-  };
+    setOpen(status)
+  }
 
   const handleCloseOnClick = () => {
-    if (headerOpen) toggleMobileHeader(false);
-  };
+    if (headerOpen) toggleMobileHeader(false)
+  }
 
   const toggle = () => {
-    toggleMobileHeader(!headerOpen);
-  };
+    toggleMobileHeader(!headerOpen)
+  }
 
   return (
     <div
       id="main-header"
       className={clsx(
-        "sticky top-0 z-50 w-full bg-white",
-        headerOpen ? "shadow-none" : "shadow-lg shadow-violet-300"
+        'sticky top-0 z-50 w-full bg-white',
+        headerOpen ? 'shadow-none' : 'shadow-lg shadow-violet-300'
       )}
     >
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-8 py-8 lg:px-4 ">
@@ -78,5 +78,5 @@ export default function Header({}: HeaderProps) {
 
       <MobileNav isOpen={headerOpen} setHeader={toggleMobileHeader} />
     </div>
-  );
+  )
 }

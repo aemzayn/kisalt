@@ -1,8 +1,8 @@
 module.exports = {
-  mode: "jit",
+  mode: 'jit',
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -12,15 +12,15 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "Work Sans",
-        "ui-sans-serif",
-        "system-ui",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Roboto",
+        'Work Sans',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
       ],
     },
   },
-  plugins: [require("@tailwindcss/forms")],
-};
+  plugins: [require('@tailwindcss/forms')],
+}

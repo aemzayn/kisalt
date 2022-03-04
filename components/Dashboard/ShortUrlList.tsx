@@ -1,9 +1,9 @@
-import { Url } from "interfaces/Url";
-import LinkItem from "./LinkItem";
+import { Url } from 'interfaces/Url'
+import LinkItem from './LinkItem'
 
 export type LinkListProps = {
-  urls: Url[];
-};
+  urls: Url[]
+}
 
 export default function ShortUrlList({ urls }: LinkListProps) {
   return (
@@ -21,5 +21,5 @@ export default function ShortUrlList({ urls }: LinkListProps) {
           ))}
       </div>
     </section>
-  );
+  )
 }

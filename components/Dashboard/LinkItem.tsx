@@ -3,22 +3,22 @@ import {
   ShareIcon,
   PencilIcon,
   TrashIcon,
-} from "@heroicons/react/solid";
-import { HOME } from "constants/paths";
+} from '@heroicons/react/solid'
+import { HOME } from 'constants/paths'
 
 export type LinkItemProps = {
-  shortUrl: string;
-  longUrl: string;
-  clicks: number;
-};
+  shortUrl: string
+  longUrl: string
+  clicks: number
+}
 
 const LinkItem = ({ shortUrl, longUrl, clicks }: LinkItemProps) => {
   const handleCopy = () => {
-    const fullLink = `${HOME}${shortUrl}`;
-    import("copy-to-clipboard").then((copy) => {
-      copy.default(fullLink);
-    });
-  };
+    const fullLink = `${HOME}${shortUrl}`
+    import('copy-to-clipboard').then((copy) => {
+      copy.default(fullLink)
+    })
+  }
 
   return (
     <div className="flex min-h-[14rem] flex-col gap-2 rounded-md border border-gray-200 bg-white p-5 text-gray-400">
@@ -46,7 +46,7 @@ const LinkItem = ({ shortUrl, longUrl, clicks }: LinkItemProps) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LinkItem;
+export default LinkItem

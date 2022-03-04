@@ -1,5 +1,5 @@
 export interface HeaderLink {
-  readonly route: string;
-  readonly label: string;
-  readonly type: "link" | "button";
+  readonly route: string
+  readonly label: string
+  readonly type: 'link' | 'button'
 }

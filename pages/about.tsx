@@ -1,8 +1,8 @@
-import PageContainer from "components/Container/PageContainer";
-import Layout from "components/Layout/Layout";
-import { NextSeo } from "next-seo";
+import PageContainer from 'components/Container/PageContainer'
+import Layout from 'components/Layout/Layout'
+import { NextSeo } from 'next-seo'
 
-export type AboutProps = {};
+export type AboutProps = {}
 
 export default function About({}: AboutProps) {
   return (
@@ -14,5 +14,5 @@ export default function About({}: AboutProps) {
         </div>
       </PageContainer>
     </Layout>
-  );
+  )
 }

@@ -1,44 +1,44 @@
-import { LinkIcon, TrendingUpIcon, CalendarIcon } from "@heroicons/react/solid";
+import { LinkIcon, TrendingUpIcon, CalendarIcon } from '@heroicons/react/solid'
 
-import InfoItem from "./InfoItem";
-import { InfoItemProps } from "./InfoItem";
-import PageContainer from "components/Container/PageContainer";
-import { useAuthContext } from "context/AuthContext";
-import useDashboard from "hooks/useDashboard";
-import ShortUrlList from "./ShortUrlList";
-import NewUrlForm from "./NewUrlForm";
-import Chart from "components/Chart";
-import TopLinksList from "./TopLinksList";
+import InfoItem from './InfoItem'
+import { InfoItemProps } from './InfoItem'
+import PageContainer from 'components/Container/PageContainer'
+import { useAuthContext } from 'context/AuthContext'
+import useDashboard from 'hooks/useDashboard'
+import ShortUrlList from './ShortUrlList'
+import NewUrlForm from './NewUrlForm'
+import Chart from 'components/Chart'
+import TopLinksList from './TopLinksList'
 
-export type DashboardProps = {};
+export type DashboardProps = {}
 
 export default function Dashboard({}: DashboardProps) {
-  const { user } = useAuthContext();
-  const { data, isLoading } = useDashboard(user?.id);
+  const { user } = useAuthContext()
+  const { data, isLoading } = useDashboard(user?.id)
 
   if (isLoading) {
-    return <></>;
+    return <></>
   }
 
-  const { todayClicks, urls, totalClicks } = data?.data;
+  const { todayClicks, urls, totalClicks } = data?.data
 
   const infos: InfoItemProps[] = data && [
     {
       count: urls ? urls.length : 0,
-      text: "ALL URLS",
+      text: 'ALL URLS',
       Icon: LinkIcon,
     },
     {
       count: totalClicks,
-      text: "TOTAL CLICKS",
+      text: 'TOTAL CLICKS',
       Icon: TrendingUpIcon,
     },
     {
       count: todayClicks ? todayClicks : 0,
-      text: "TODAY CLICKS",
+      text: 'TODAY CLICKS',
       Icon: CalendarIcon,
     },
-  ];
+  ]
 
   return (
     <PageContainer>
@@ -58,5 +58,5 @@ export default function Dashboard({}: DashboardProps) {
         {data && urls && <ShortUrlList urls={urls} />}
       </div>
     </PageContainer>
-  );
+  )
 }

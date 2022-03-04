@@ -1,13 +1,13 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import NavLink from "components/Nav/NavLink";
-import { headerLinks } from "constants/paths";
+import NavLink from 'components/Nav/NavLink'
+import { headerLinks } from 'constants/paths'
 
-export type NavProps = {};
+export type NavProps = {}
 
 export interface ButtonLinkProps {
-  label: React.ReactNode;
-  href: string;
+  label: React.ReactNode
+  href: string
 }
 
 export const ButtonLink = ({ label, href }: ButtonLinkProps) => {
@@ -17,16 +17,16 @@ export const ButtonLink = ({ label, href }: ButtonLinkProps) => {
         {label}
       </a>
     </Link>
-  );
-};
+  )
+}
 
 export default function Nav({}: NavProps) {
   return (
     <nav className="hidden items-center gap-8 md:flex ">
       {headerLinks.map((link, idx) => {
-        const L = link.type === "link" ? NavLink : ButtonLink;
-        return <L key={idx} href={link.route} label={link.label} />;
+        const L = link.type === 'link' ? NavLink : ButtonLink
+        return <L key={idx} href={link.route} label={link.label} />
       })}
     </nav>
-  );
+  )
 }

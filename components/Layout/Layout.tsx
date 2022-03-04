@@ -1,8 +1,8 @@
-import Header from "../Header/Header";
+import Header from '../Header/Header'
 
 export type LayoutProps = {
-  children?: React.ReactNode;
-};
+  children?: React.ReactNode
+}
 
 export default function Layout({ children }: LayoutProps) {
   return (
@@ -11,5 +11,5 @@ export default function Layout({ children }: LayoutProps) {
       <div id="cover" className="cover hidden" />
       {children}
     </div>
-  );
+  )
 }
