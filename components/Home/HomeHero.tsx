@@ -31,7 +31,7 @@ export default function HomeHero({}: HomeHeroProps) {
           </div>
           <div className="hidden flex-1 flex-col items-center justify-center lg:flex">
             <Image
-              src="/assets/hero.png"
+              src="/images/screen/hero.png"
               alt="Person looking at phone"
               width={400}
               height={450}

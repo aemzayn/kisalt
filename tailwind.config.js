@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        laptop: "url('/assets/laptop.png')",
+        laptop: "url('/images/screen/laptop.png')",
       },
     },
     fontFamily: {
