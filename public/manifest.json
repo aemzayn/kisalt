@@ -1,0 +1,23 @@
+{
+  "name": "kisalt",
+  "short_name": "Kisalt: Handy URL shortener.",
+  "icons": [
+    {
+      "src": "/images/maskable/kisalt-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/maskable/kisalt-512x152.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable any"
+    }
+  ],
+  "theme_color": "#7e22ce",
+  "background_color": "#ebe7fe",
+  "display": "standalone",
+  "start_url": "/?source=pwa",
+  "scope": "/"
+}
