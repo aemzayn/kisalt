@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { user, error } = await supabase.auth.api.getUserByCookie(req)
+    const { user, error } = await supabase.auth.api.getUserByCookie(req, res)
 
     if (!error && user && user.id) {
       res.statusCode = 200
