@@ -18,7 +18,7 @@ export default function NewUrlForm({ userId }: NewUrlFormProps) {
     { resetForm, setErrors }: FormikHelpers<Values>
   ) => {
     try {
-      const {} = await createNewUrl(
+      await createNewUrl(
         {
           slug: values.slug,
           realUrl: values.realUrl,

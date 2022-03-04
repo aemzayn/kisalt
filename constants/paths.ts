@@ -1,6 +1,8 @@
 import { HeaderLink } from 'interfaces/Link'
 
 export const HOME = process.env.NEXT_PUBLIC_HOME || ''
+export const META_IMAGE: string = 'images/meta/meta.jpg'
+export const META_ICON: string = `${HOME}images/favicon/android-icon-48x48.png`
 
 export const dashboard: string = '/dashboard'
 export const login: string = '/login'
@@ -29,4 +31,16 @@ export const headerLinks: HeaderLink[] = [
   { route: '/how-it-works', label: 'How it works', type: 'link' },
   { route: '/register', label: 'Sign up', type: 'link' },
   { route: '/login', label: 'Login', type: 'button' },
+]
+
+export const blacklistSlugs: string[] = [
+  'about',
+  'dashboard',
+  'how-it-works',
+  'login',
+  'register',
+  'reset-password',
+  'set-new-password',
+  'privacy-policy',
+  'terms-of-service',
 ]

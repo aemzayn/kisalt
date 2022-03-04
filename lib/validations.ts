@@ -1,3 +1,4 @@
+import { blacklistSlugs } from 'constants/paths'
 import { object, string } from 'yup'
 
 export const emailValidation = string()
@@ -14,6 +15,7 @@ export const slugValidation = string()
     /^[a-z0-9]+(?:-[a-z0-9]+)*$/gim,
     'Slug cannot have spaces and only separated by dash (-)'
   )
+  .notOneOf(blacklistSlugs, 'Cannot use this slug')
   .required('Required')
 
 export const passwordValidation = string()

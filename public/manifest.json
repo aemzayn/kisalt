@@ -1,6 +1,7 @@
 {
   "name": "kisalt",
   "short_name": "Kisalt: Handy URL shortener.",
+  "description": "Friendly URL shortener app for your daily using.",
   "icons": [
     {
       "src": "/images/maskable/kisalt-192x192.png",
