@@ -1,14 +1,10 @@
 import Image from 'next/image'
 import Container from '../Container/Container'
 import HeroInput from './HeroInput'
-import { User } from 'interfaces/User'
 
-export type HomeHeroProps = {
-  isLogin: boolean
-  user: User
-}
+export type HomeHeroProps = {}
 
-export default function HomeHero({ isLogin, user }: HomeHeroProps) {
+export default function HomeHero({}: HomeHeroProps) {
   return (
     <section
       id="hero-section"
@@ -31,7 +27,7 @@ export default function HomeHero({ isLogin, user }: HomeHeroProps) {
               Link Management Platform with all features you need in one place.
               Shorten, brand, manage and track your links the easy way.
             </p>
-            <HeroInput isLogin={isLogin} user={user} />
+            <HeroInput />
           </div>
           <div className="hidden flex-1 flex-col items-center justify-center lg:flex">
             <Image

@@ -5,6 +5,7 @@ import {
   TrashIcon,
 } from '@heroicons/react/solid'
 import { HOME } from 'constants/paths'
+import { copyToClipboard } from 'lib/string'
 
 export type LinkItemProps = {
   shortUrl: string
@@ -15,9 +16,7 @@ export type LinkItemProps = {
 const LinkItem = ({ shortUrl, longUrl, clicks }: LinkItemProps) => {
   const handleCopy = () => {
     const fullLink = `${HOME}${shortUrl}`
-    import('copy-to-clipboard').then((copy) => {
-      copy.default(fullLink)
-    })
+    copyToClipboard(fullLink)
   }
 
   return (

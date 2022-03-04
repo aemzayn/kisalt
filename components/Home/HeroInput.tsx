@@ -10,35 +10,56 @@ import Spinner from 'components/Spinner'
 import { generateRandomSlug } from 'lib/helpers'
 import { heroInputValidationScheme } from 'lib/validations'
 import { createNewUrl } from 'lib/supabaseClient'
-import { User } from 'interfaces/User'
-
-export type HeroInputProps = {
-  isLogin: boolean
-  user: User
-}
+import useUser from 'hooks/useUser'
+import { useState } from 'react'
+import { copyToClipboard } from 'lib/string'
+import { HOME } from 'constants/paths'
 
 export type Values = {
   realUrl: string
 }
 
-export default function HeroInput({ isLogin, user }: HeroInputProps) {
+export type HeroInputProps = {}
+
+export default function HeroInput({}: HeroInputProps) {
+  const [msgType, setMsgType] = useState<'error' | 'success'>('error')
+  const [newSlug, setNewSlug] = useState<string | null>('')
+  const { data: user, isLogin } = useUser()
+
+  const handleCopyUrl = (slug: string) => {
+    const fullLink = `${HOME}${slug}`
+    copyToClipboard(fullLink)
+  }
+
   const handleSubmit = async (
     { realUrl }: Values,
-    { setFieldError, setSubmitting }: FormikHelpers<Values>
+    { setFieldError }: FormikHelpers<Values>
   ) => {
     try {
       const slug = generateRandomSlug()
 
-      if (isLogin && user) {
-        console.log({ realUrl, slug })
-        // const {} = await createNewUrl({
-        //   realUrl, slug
-        // }, user.id)
+      if (isLogin) {
+        const { error } = await createNewUrl(
+          {
+            realUrl,
+            slug,
+          },
+          user.id
+        )
+
+        if (error) {
+          throw new Error(error)
+        }
+
+        setNewSlug(slug)
+        setMsgType('success')
+        setFieldError('realUrl', `Your short url is ready: /${slug}`)
       } else {
+        setMsgType('error')
         setFieldError('realUrl', 'You are not logged in, please log in first.')
       }
     } catch (error) {
-      setFieldError('realUrl', error)
+      setFieldError('realUrl', error || error.message)
     }
   }
 
@@ -69,7 +90,7 @@ export default function HeroInput({ isLogin, user }: HeroInputProps) {
               </button>
             </Form>
             <div className="flex flex-col gap-2">
-              {errors.realUrl && (
+              {errors.realUrl && msgType === 'error' && (
                 <>
                   <p className="-ml-[1px] flex items-center gap-2 text-sm text-red-500">
                     <ExclamationCircleIcon className="h-6 w-6" /> You are not
@@ -82,6 +103,17 @@ export default function HeroInput({ isLogin, user }: HeroInputProps) {
                     </a>
                   </Link>
                 </>
+              )}
+              {errors.realUrl && msgType === 'success' && (
+                <p className="flex cursor-pointer items-center gap-2 text-sm text-blue-500 hover:text-opacity-80">
+                  {errors.realUrl}
+                  <span
+                    onClick={() => handleCopyUrl(newSlug)}
+                    className="font-semibold underline underline-offset-2"
+                  >
+                    copy
+                  </span>
+                </p>
               )}
               {!errors.realUrl && (
                 <p className="flex items-center gap-2 text-sm text-violet-500">

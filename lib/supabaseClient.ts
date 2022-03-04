@@ -113,7 +113,16 @@ export type NewUrl = {
   realUrl: string
 }
 
-export const createNewUrl = async (newUrl: NewUrl, userId: string) => {
+export type Response = {
+  error?: string | null
+  success?: boolean
+  data?: any
+}
+
+export const createNewUrl = async (
+  newUrl: NewUrl,
+  userId: string
+): Promise<Response> => {
   const res = await fetch(createNewUrlApi(userId), {
     ...defaultFetchOption,
     method: 'POST',

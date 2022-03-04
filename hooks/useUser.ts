@@ -10,8 +10,9 @@ const useUser = () => {
 
   return {
     isLoading,
-    data: isLogin ? data : null,
+    data,
     isError: Boolean(error || isErrorData),
+    isLogin,
   }
 }
 

@@ -136,16 +136,7 @@ export default function AuthForm({ formType = 'login' }: AuthFormProps) {
                   )}
                 </div>
 
-                <div className="flex flex-col justify-between gap-y-2 lg:flex-row lg:items-center">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox rounded"
-                      name="remember"
-                      id="remember"
-                    />
-                    <label htmlFor="remember">Remember me</label>
-                  </div>
+                <div className="flex flex-col justify-end gap-y-2 lg:flex-row lg:items-center">
                   <Link href={resetPassword}>
                     <a className="font-medium text-violet-700 hover:text-violet-500">
                       Forgot your password?
