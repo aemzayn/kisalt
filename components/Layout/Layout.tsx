@@ -1,3 +1,4 @@
+import Footer from 'components/Footer'
 import Header from '../Header/Header'
 
 export type LayoutProps = {
@@ -10,6 +11,7 @@ export default function Layout({ children }: LayoutProps) {
       <Header />
       <div id="cover" className="cover hidden" />
       {children}
+      <Footer />
     </div>
   )
 }
