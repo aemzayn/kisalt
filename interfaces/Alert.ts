@@ -5,8 +5,8 @@ export interface Alert {
   message: string
   type: AlertType
   confirmText: string
-  closeText: string
-  isOpen: boolean
-  onClose: () => void
-  onConfirm: () => void
+  closeText?: string
+  isOpen?: boolean
+  onConfirm?: () => void
+  onClose?: () => void
 }

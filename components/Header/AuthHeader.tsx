@@ -6,9 +6,15 @@ import NeutralHeader from './NeutralHeader'
 import Header from './Header'
 import { useAuthContext } from 'context/AuthContext'
 
-export type AuthHeaderProps = {}
+export type AuthHeaderProps = {
+  isHeaderOpen: boolean
+  toggleMobileHeader: (status: boolean) => void
+}
 
-export default function AuthHeader({}: AuthHeaderProps) {
+export default function AuthHeader({
+  isHeaderOpen,
+  toggleMobileHeader,
+}: AuthHeaderProps) {
   const { isLogin, isLoading } = useAuthContext()
 
   if (!isLoading) {
@@ -34,7 +40,12 @@ export default function AuthHeader({}: AuthHeaderProps) {
         </div>
       )
     } else {
-      return <Header />
+      return (
+        <Header
+          isHeaderOpen={isHeaderOpen}
+          toggleMobileHeader={toggleMobileHeader}
+        />
+      )
     }
   }
 

@@ -1,15 +1,16 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 
-import { Alert } from 'interfaces/Alert'
+import { Alert as IAlert } from 'interfaces/Alert'
 import AuthContext from './AuthContext'
+import Alert from 'components/Alert'
 
 export type AlertContext = {
-  alert: Alert
+  alert: IAlert
   closeAlert: () => void
-  showAlert: any
+  setAlert: (args: IAlert) => void
 }
 
-const defaultAlert: Alert = {
+const defaultAlert: IAlert = {
   title: '',
   message: '',
   closeText: 'Close',
@@ -23,7 +24,7 @@ const defaultAlert: Alert = {
 const AlertContext = createContext<AlertContext>({
   alert: defaultAlert,
   closeAlert: () => {},
-  showAlert: () => {},
+  setAlert: () => {},
 })
 
 export const useAlertContext = () => useContext(AlertContext)
@@ -33,27 +34,28 @@ export type AlertProviderProps = {
 }
 
 export const AlertProvider = ({ children }) => {
-  const [alert, setAlert] = useState<Alert>({ ...defaultAlert })
+  const [alert, setAlertData] = useState<IAlert>({ ...defaultAlert })
 
   const closeAlert = () => {
-    setAlert((prevState) => ({
+    setAlertData((prevState) => ({
       ...prevState,
       isOpen: false,
     }))
   }
 
-  const showAlert = useCallback((args: Alert) => {
-    setAlert({
+  const setAlert = useCallback((args: IAlert) => {
+    setAlertData({
       ...args,
       isOpen: true,
       closeText: args.closeText || 'Close',
       onClose: args.onClose || closeAlert,
-      onConfirm: args.onConfirm || (() => {}),
+      onConfirm: args.onConfirm || closeAlert,
     })
   }, [])
 
   return (
-    <AlertContext.Provider value={{ alert, closeAlert: closeAlert, showAlert }}>
+    <AlertContext.Provider value={{ alert, closeAlert, setAlert }}>
+      <Alert alert={alert} closeAlert={closeAlert} />
       {children}
     </AlertContext.Provider>
   )

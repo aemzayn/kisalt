@@ -1,4 +1,6 @@
+import Cover from 'components/Cover'
 import Footer from 'components/Footer'
+import useHeader from 'hooks/useHeader'
 import Header from '../Header/Header'
 
 export type LayoutProps = {
@@ -6,10 +8,14 @@ export type LayoutProps = {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const { isHeaderOpen, toggleMobileHeader, closeHeader } = useHeader()
   return (
     <div className="min-h-screen">
-      <Header />
-      <div id="cover" className="cover hidden" />
+      <Header
+        isHeaderOpen={isHeaderOpen}
+        toggleMobileHeader={toggleMobileHeader}
+      />
+      <Cover closeHeader={closeHeader} />
       {children}
       <Footer />
     </div>
