@@ -22,8 +22,6 @@ export default async function handler(
       return
     }
 
-    // check if slug already being used
-
     const { data: slugIsUsed } = await supabase
       .from('urls')
       .select('slug')
