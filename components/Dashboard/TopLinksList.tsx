@@ -8,9 +8,9 @@ export default function TopLinksList({ data }: TopLinksListProps) {
   return (
     <section className="min-h-56 col-span-12 flex items-center justify-center rounded-md border border-gray-200 bg-white p-4 lg:col-span-4">
       <div className="flex h-full w-full flex-col gap-2">
-        <h1 className="">Top URL by clicks</h1>
+        <h1>Top URL by clicks</h1>
         <hr />
-        <ol>
+        <ol className="space-y-2">
           {data &&
             data.slice(0, 5).map((url, index) => (
               <li key={url.id} className="flex items-start justify-between">

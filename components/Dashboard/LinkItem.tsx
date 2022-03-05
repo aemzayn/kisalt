@@ -1,6 +1,5 @@
 import {
   ClipboardCopyIcon,
-  ShareIcon,
   PencilIcon,
   TrashIcon,
 } from '@heroicons/react/solid'
@@ -33,9 +32,6 @@ const LinkItem = ({ shortUrl, longUrl, clicks }: LinkItemProps) => {
           className="rounded-full p-1 duration-150 hover:bg-gray-200 "
         >
           <ClipboardCopyIcon className="h-4 w-4 text-violet-800" />
-        </button>
-        <button className="rounded-full p-1 duration-150 hover:bg-gray-200 ">
-          <ShareIcon className="h-4 w-4 text-violet-800" />
         </button>
         <button className="rounded-full p-1 duration-150 hover:bg-gray-200 ">
           <PencilIcon className="h-4 w-4 text-violet-800" />
