@@ -1,3 +1,5 @@
+import { register } from 'constants/paths'
+import Link from 'next/link'
 import Container from '../Container/Container'
 
 type Props = {}
@@ -16,9 +18,11 @@ export default function HomeInfo({}: Props) {
               YouTube, Twitter, Linked In and top sites on the Internet, just
               paste the long URL and click the Shorten URL button.
             </p>
-            <button className="rounded-full bg-violet-50  px-5 py-2 text-violet-900 duration-75 hover:bg-opacity-90">
-              Get Started
-            </button>
+            <Link href={register}>
+              <a className="rounded-full bg-violet-50  px-5 py-2 text-violet-900 duration-75 hover:bg-opacity-90">
+                Get Started
+              </a>
+            </Link>
           </div>
         </div>
       </Container>

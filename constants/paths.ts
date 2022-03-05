@@ -7,6 +7,7 @@ export const META_ICON: string = `${HOME}images/favicon/android-icon-48x48.png`
 export const dashboard: string = '/dashboard'
 export const login: string = '/login'
 export const signup: string = '/signup'
+export const register: string = '/register'
 export const about: string = '/about'
 export const resetPassword: string = '/reset-password'
 export const setNewPassword: string = '/set-new-password'
