@@ -55,6 +55,7 @@ export const AlertProvider = ({ children }) => {
       onConfirm: args.onConfirm || closeAlert,
     })
     openCover()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
