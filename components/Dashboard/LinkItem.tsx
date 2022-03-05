@@ -1,15 +1,18 @@
+import { useState } from 'react'
 import {
   ClipboardCopyIcon,
   PencilIcon,
   TrashIcon,
 } from '@heroicons/react/solid'
 
-import { HOME } from 'constants/paths'
+import { getMyDashboardApi, HOME } from 'constants/paths'
+import { useAlertContext } from 'context/AlertContext'
 import { Url } from 'interfaces/Url'
 import { User } from 'interfaces/User'
 import { copyToClipboard } from 'lib/string'
-import { useState } from 'react'
+import { deleteUrl } from 'lib/supabaseClient'
 import ChangeSlugForm from './ChangeSlugForm'
+import { mutate } from 'swr'
 
 export type LinkItemProps = {
   url: Url
@@ -18,9 +21,45 @@ export type LinkItemProps = {
 
 const LinkItem = ({ url, user }: LinkItemProps) => {
   const [editMode, setEditMode] = useState<boolean>(false)
+  const { setAlert, closeAlert } = useAlertContext()
 
   const closeEditMode = () => {
     setEditMode(false)
+  }
+
+  const handleDeleteUrl = () => {
+    setAlert({
+      title: 'Confirmation delete',
+      message:
+        'Are you sure to delete this URL, deleted URL data cannot be recovered?',
+      confirmText: 'Yes, delete',
+      onConfirm: handleConfirmDeleteUrl,
+      closeText: 'Cancel',
+      onClose: () => {
+        closeAlert()
+      },
+      type: 'warning',
+    })
+  }
+
+  const handleConfirmDeleteUrl = async () => {
+    try {
+      const { error } = await deleteUrl({ id: url?.id, userId: user?.id })
+      if (error) {
+        throw new Error(error)
+      } else {
+        mutate(getMyDashboardApi(user?.id))
+        closeAlert()
+      }
+    } catch (error) {
+      setAlert({
+        title: 'Error happened.',
+        message: error,
+        type: 'error',
+        onClose: closeAlert,
+        closeText: 'Close',
+      })
+    }
   }
 
   const handleCopy = () => {
@@ -54,7 +93,10 @@ const LinkItem = ({ url, user }: LinkItemProps) => {
         >
           <PencilIcon className="h-4 w-4 text-violet-800" />
         </button>
-        <button className="ml-auto rounded-full p-1 duration-150 hover:bg-gray-200">
+        <button
+          onClick={handleDeleteUrl}
+          className="ml-auto rounded-full p-1 duration-150 hover:bg-gray-200"
+        >
           <TrashIcon className="h-4 w-4 text-violet-800" />
         </button>
       </div>

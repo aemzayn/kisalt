@@ -1,8 +1,9 @@
 import { ApiError, createClient, Session, User } from '@supabase/supabase-js'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 import {
-  createNewUrlApi,
   HOME,
+  createNewUrlApi,
+  deleteUrlApi,
   loginApi,
   logOutApi,
   patchSlugApi,
@@ -166,6 +167,19 @@ export const patchSlug = async ({
   const res = await fetcherWithAuth(patchSlugApi(id), {
     method: 'PATCH',
     body: JSON.stringify({ slug, userId }),
+  })
+  return res
+}
+
+export type deleteUrlArg = {
+  id: string
+  userId: string
+}
+
+export const deleteUrl = async ({ id, userId }) => {
+  const res = await fetcherWithAuth(deleteUrlApi(id), {
+    method: 'DELETE',
+    body: JSON.stringify({ id, userId }),
   })
   return res
 }

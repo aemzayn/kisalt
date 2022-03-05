@@ -15,7 +15,7 @@ export default function Alert({ alert, closeAlert }: AlertProps) {
   return (
     <div
       className={clsx(
-        'fixed top-[50%] left-[50%] z-50 w-[90vw] max-w-[90vw] -translate-y-[50%] -translate-x-[50%] flex-col gap-4 bg-white p-5 opacity-80 shadow-lg outline duration-150 ease-in  lg:max-w-[50vw] lg:gap-2 xl:max-w-[40vw]',
+        'fixed top-[50%] left-[50%] z-50 w-[90vw] max-w-[90vw] -translate-y-[50%] -translate-x-[50%] flex-col gap-4 rounded-md bg-white p-5 opacity-80 shadow-lg outline duration-150  ease-in lg:max-w-[50vw] lg:gap-2 xl:max-w-[40vw]',
         alert.isOpen ? 'flex translate-y-0 opacity-100' : 'hidden',
         alert.type === 'warning' && 'outline-yellow-400',
         alert.type === 'error' && 'outline-red-400'
@@ -38,7 +38,11 @@ export default function Alert({ alert, closeAlert }: AlertProps) {
         {alert.closeText && (
           <button
             onClick={alert.onClose}
-            className="flex-1 rounded-md bg-violet-200 py-2 text-violet-900 disabled:bg-violet-400"
+            className={clsx(
+              'flex-1 rounded-md bg-violet-200 py-2 text-violet-900 disabled:bg-violet-400',
+              alert.type === 'warning' &&
+                'border border-yellow-500 bg-white text-black'
+            )}
           >
             {alert.closeText}
           </button>
@@ -48,8 +52,8 @@ export default function Alert({ alert, closeAlert }: AlertProps) {
           <button
             onClick={alert.onConfirm}
             className={clsx(
-              'flex-1 rounded-md bg-violet-900 py-2 text-violet-50 disabled:bg-violet-400',
-              alert.type === 'warning' && 'bg-yellow-500 text-black',
+              'flex-1 rounded-md bg-violet-900 py-2 text-violet-50 duration-100 hover:bg-opacity-80 disabled:bg-violet-500',
+              alert.type === 'warning' && 'bg-yellow-400 text-black',
               alert.type === 'error' && 'bg-red-600'
             )}
           >
