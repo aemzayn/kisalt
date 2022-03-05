@@ -1,7 +1,11 @@
 import { Formik, Form, Field, FormikHelpers } from 'formik'
+import { mutate } from 'swr'
+
 import { newUrlValidationScheme } from 'lib/validations'
 import ErrorMessage from 'components/AuthForm/ErrorMessage'
 import { createNewUrl } from 'lib/supabaseClient'
+import { useAlertContext } from 'context/AlertContext'
+import { getMyDashboardApi } from 'constants/paths'
 
 export type Values = {
   realUrl: string
@@ -13,19 +17,32 @@ export type NewUrlFormProps = {
 }
 
 export default function NewUrlForm({ userId }: NewUrlFormProps) {
+  const { closeAlert, setAlert } = useAlertContext()
   const handleSubmit = async (
     values: Values,
-    { resetForm, setErrors }: FormikHelpers<Values>
+    { resetForm }: FormikHelpers<Values>
   ) => {
     try {
-      await createNewUrl(
+      const { error } = await createNewUrl(
         {
           slug: values.slug,
           realUrl: values.realUrl,
         },
         userId
       )
+
+      if (error) {
+        throw new Error(error)
+      } else {
+        mutate(getMyDashboardApi(userId))
+      }
     } catch (error) {
+      setAlert({
+        title: 'Fail',
+        message: error,
+        type: 'error',
+        onClose: closeAlert,
+      })
     } finally {
       resetForm()
     }

@@ -32,8 +32,8 @@ export const patchSlugApi = (urlId: string) => `/api/v1/urls/patch/${urlId}`
 export const deleteUrlApi = (urlId: string) => `/api/v1/urls/delete/${urlId}`
 
 export const headerLinks: HeaderLink[] = [
-  { route: '/about', label: 'About', type: 'link' },
-  { route: '/how-it-works', label: 'How it works', type: 'link' },
+  // { route: '/about', label: 'About', type: 'link' },
+  // { route: '/how-it-works', label: 'How it works', type: 'link' },
   { route: '/register', label: 'Sign up', type: 'link' },
   { route: '/login', label: 'Login', type: 'button' },
 ]

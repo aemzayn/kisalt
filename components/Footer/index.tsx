@@ -30,7 +30,7 @@ export default function Footer({}: FooterProps) {
                   Developed by{' '}
                   <a
                     className="group duration-150 ease-in-out hover:text-violet-600"
-                    href="https://github.com/aemzayn"
+                    href="https://kisalt.one/github"
                   >
                     <span className="font-medium text-violet-700">
                       Ahmad Muslih Zain
