@@ -27,7 +27,7 @@ export default function Header({
       id="main-header"
       className={clsx(
         'sticky top-0 z-20 w-full bg-white',
-        isHeaderOpen ? 'shadow-none' : 'shadow-lg shadow-violet-300'
+        isHeaderOpen ? 'shadow-none' : 'shadow-sm shadow-violet-300'
       )}
     >
       <div className="container mx-auto flex max-w-6xl items-center justify-between px-8 py-8 lg:px-4 ">
