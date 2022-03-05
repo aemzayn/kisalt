@@ -7,6 +7,7 @@ import {
   logOutApi,
   registerApi,
   resetPasswordApi,
+  setNewPasswordApi,
   setSessionApi,
 } from 'constants/paths'
 import { defaultFetchOption } from './fetcher'
@@ -128,6 +129,24 @@ export const createNewUrl = async (
     method: 'POST',
     credentials: 'same-origin',
     body: JSON.stringify(newUrl),
+  })
+  return await res.json()
+}
+
+export type SetNewPasswordArg = {
+  password: string
+  accessToken: string
+}
+
+export const setNewPassword = async ({
+  password,
+  accessToken,
+}: SetNewPasswordArg): Promise<Response> => {
+  const res = await fetch(setNewPasswordApi, {
+    ...defaultFetchOption,
+    method: 'POST',
+    credentials: 'same-origin',
+    body: JSON.stringify({ password, accessToken }),
   })
   return await res.json()
 }

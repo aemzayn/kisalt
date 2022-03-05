@@ -29,6 +29,7 @@ export const authValidationScheme = object().shape({
 
 export const resetPasswordValidationScheme = object().shape({
   email: emailValidation,
+  password: passwordValidation,
 })
 
 export const newUrlValidationScheme = object().shape({

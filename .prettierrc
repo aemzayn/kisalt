@@ -1,7 +1,7 @@
 {
   "tabWidth": 2,
   "useTabs": false,
-  "endOfLine": "auto",
+  "endOfLine": "lf",
   "semi": false,
   "arrowParens": "always",
   "jsxSingleQuote": false,

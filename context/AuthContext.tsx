@@ -22,7 +22,6 @@ export type AuthProviderProps = {
 
 export const AuthProvider = ({ children }) => {
   const { data, isLoading } = useUser()
-  console.log(data)
 
   return (
     <AuthContext.Provider

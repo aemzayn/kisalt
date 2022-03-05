@@ -4,7 +4,7 @@ import {
   SIGNUP_CB,
   EVENT_SIGN_IN,
 } from 'constants/common'
-import { dashboard, login } from 'constants/paths'
+import { dashboard, login, setNewPassword } from 'constants/paths'
 import { customAlphabet } from 'nanoid'
 import { setSession } from './supabaseClient'
 
@@ -19,6 +19,7 @@ export const callbackHandler = async () => {
 
       if (type === RECOVERY_CB) {
         window.localStorage.setItem(LS_FP_TOKEN, accessToken)
+        window.location.assign(setNewPassword)
       } else if (type === SIGNUP_CB) {
         window.location.assign(login)
       } else if (accessToken) {

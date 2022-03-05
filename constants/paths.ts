@@ -9,6 +9,7 @@ export const login: string = '/login'
 export const signup: string = '/signup'
 export const about: string = '/about'
 export const resetPassword: string = '/reset-password'
+export const setNewPassword: string = '/set-new-password'
 
 export const checkAuth: string = '/api/v1/auth/check-auth'
 export const loginApi: string = '/api/v1/auth/login'
@@ -16,6 +17,7 @@ export const registerApi: string = '/api/v1/auth/register'
 export const logOutApi: string = '/api/v1/auth/logout'
 export const setSessionApi: string = '/api/v1/auth/set-session'
 export const resetPasswordApi: string = '/api/v1/auth/reset-password'
+export const setNewPasswordApi: string = '/api/v1/auth/set-new-password'
 
 export const FALLBACK: string = `${HOME}callback`
 
