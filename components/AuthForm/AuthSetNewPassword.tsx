@@ -6,6 +6,8 @@ import PageContainer from 'components/Container/PageContainer'
 import { setNewPassword } from 'lib/supabaseClient'
 import { resetPasswordValidationScheme } from 'lib/validations'
 import { LS_FP_TOKEN } from 'constants/common'
+import { useAlertContext } from 'context/AlertContext'
+import { login } from 'constants/paths'
 
 type Values = {
   email: string
@@ -17,6 +19,7 @@ export type AuthSetNewPasswordProps = {}
 export default function AuthSetNewPassword({}: AuthSetNewPasswordProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [accessToken, setAccessToken] = useState<string>('')
+  const { setAlert } = useAlertContext()
 
   useEffect(() => {
     if (window && window.localStorage) {
@@ -27,14 +30,32 @@ export default function AuthSetNewPassword({}: AuthSetNewPasswordProps) {
 
   const handleSubmit = async (
     { password }: Values,
-    { resetForm, setErrors }: FormikHelpers<Values>
+    {}: FormikHelpers<Values>
   ) => {
+    setIsSubmitting(true)
     const { error } = await setNewPassword({ accessToken, password })
 
     if (error) {
-      // TODO: Set alert
+      setAlert({
+        title: 'Cannot update password',
+        message: error,
+        type: 'error',
+        closeText: 'Close',
+        onClose: () => {
+          setIsSubmitting(false)
+        },
+      })
     } else {
-      console.log('success')
+      setAlert({
+        title: 'Success',
+        message: 'Your password has been changed.',
+        type: 'success',
+        closeText: 'Close',
+        onClose: () => {
+          setIsSubmitting(false)
+          window.location.assign(login)
+        },
+      })
     }
   }
 

@@ -55,7 +55,7 @@ export default function Dashboard({}: DashboardProps) {
           <NewUrlForm userId={user?.id} />
         </div>
 
-        {data && urls && <ShortUrlList urls={urls} />}
+        {data && urls && <ShortUrlList urls={urls} user={user} />}
       </div>
     </PageContainer>
   )

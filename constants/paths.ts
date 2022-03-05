@@ -28,6 +28,7 @@ export const getClicks = (urlId: string) => `/api/v1/clicks/get/${urlId}`
 export const getMyDashboardApi = (userId: string) => `/api/v1/me/${userId}`
 export const getChartDataApi = (userId: string) =>
   `/api/v1/clicks/chart/${userId}`
+export const patchSlugApi = (urlId: string) => `/api/v1/urls/patch/${urlId}`
 
 export const headerLinks: HeaderLink[] = [
   { route: '/about', label: 'About', type: 'link' },

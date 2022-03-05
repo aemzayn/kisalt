@@ -15,7 +15,7 @@ export default function Alert({ alert, closeAlert }: AlertProps) {
   return (
     <div
       className={clsx(
-        'absolute top-[15vh] left-[50%] z-50 w-[90vw] max-w-[90vw] -translate-y-10 -translate-x-[50%] flex-col gap-4 bg-white p-5 opacity-80 shadow-lg outline duration-150 ease-in  lg:top-[10vh] lg:max-w-[50vw] lg:gap-2 xl:max-w-[40vw]',
+        'fixed top-[50%] left-[50%] z-50 w-[90vw] max-w-[90vw] -translate-y-[50%] -translate-x-[50%] flex-col gap-4 bg-white p-5 opacity-80 shadow-lg outline duration-150 ease-in  lg:max-w-[50vw] lg:gap-2 xl:max-w-[40vw]',
         alert.isOpen ? 'flex translate-y-0 opacity-100' : 'hidden',
         alert.type === 'warning' && 'outline-yellow-400',
         alert.type === 'error' && 'outline-red-400'

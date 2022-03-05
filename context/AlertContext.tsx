@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 import { Alert as IAlert } from 'interfaces/Alert'
 import AuthContext from './AuthContext'
 import Alert from 'components/Alert'
+import useCover from 'hooks/useCover'
 
 export type AlertContext = {
   alert: IAlert
@@ -14,7 +15,7 @@ const defaultAlert: IAlert = {
   title: '',
   message: '',
   closeText: 'Close',
-  confirmText: '',
+  confirmText: 'Accept',
   isOpen: false,
   type: 'success',
   onClose: () => {},
@@ -35,12 +36,14 @@ export type AlertProviderProps = {
 
 export const AlertProvider = ({ children }) => {
   const [alert, setAlertData] = useState<IAlert>({ ...defaultAlert })
+  const { openCover, closeCover } = useCover()
 
   const closeAlert = () => {
     setAlertData((prevState) => ({
       ...prevState,
       isOpen: false,
     }))
+    closeCover()
   }
 
   const setAlert = useCallback((args: IAlert) => {
@@ -51,6 +54,7 @@ export const AlertProvider = ({ children }) => {
       onClose: args.onClose || closeAlert,
       onConfirm: args.onConfirm || closeAlert,
     })
+    openCover()
   }, [])
 
   return (

@@ -17,7 +17,9 @@ export default function TopLinksList({ data }: TopLinksListProps) {
                 <div className="text-gray-400">{index + 1}.</div>
                 <div className="flex flex-1 flex-col gap-1 pl-2">
                   <p>/{url.slug}</p>
-                  <p className="text-sm text-gray-400">{url.real_url}</p>
+                  <p className="break-all text-sm text-gray-400">
+                    {url.real_url}
+                  </p>
                 </div>
                 <div>{url.clicks}</div>
               </li>

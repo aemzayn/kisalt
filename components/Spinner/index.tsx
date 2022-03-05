@@ -14,7 +14,7 @@ export default function Spinner({}: SpinnerProps) {
         cx="50"
         cy="50"
         fill="none"
-        stroke="#e7e7e7"
+        stroke="#cccccc"
         strokeWidth="11"
         r="30"
         strokeDasharray="120 40"

@@ -5,12 +5,13 @@ import {
   HOME,
   loginApi,
   logOutApi,
+  patchSlugApi,
   registerApi,
   resetPasswordApi,
   setNewPasswordApi,
   setSessionApi,
 } from 'constants/paths'
-import { defaultFetchOption } from './fetcher'
+import { defaultFetchOption, fetcherWithAuth } from './fetcher'
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -149,4 +150,22 @@ export const setNewPassword = async ({
     body: JSON.stringify({ password, accessToken }),
   })
   return await res.json()
+}
+
+export type PatchSlugArg = {
+  id: string
+  slug: string
+  userId: string
+}
+
+export const patchSlug = async ({
+  id,
+  slug,
+  userId,
+}: PatchSlugArg): Promise<any> => {
+  const res = await fetcherWithAuth(patchSlugApi(id), {
+    method: 'PATCH',
+    body: JSON.stringify({ slug, userId }),
+  })
+  return res
 }

@@ -40,3 +40,7 @@ export const newUrlValidationScheme = object().shape({
 export const heroInputValidationScheme = object().shape({
   realUrl: urlValidation,
 })
+
+export const changeSlugValidationScheme = object().shape({
+  slug: slugValidation,
+})
