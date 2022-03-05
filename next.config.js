@@ -5,7 +5,7 @@ module.exports = withPWA({
   images: {
     deviceSizes: [420, 1024],
     iconSizes: [],
-    domains: [],
+    domains: ['avatars.githubusercontent.com'],
     path: '/_next/image',
     loader: 'default',
   },
