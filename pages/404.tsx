@@ -13,7 +13,7 @@ export default function NotFound({}: NotFoundProps) {
     <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-violet-400 via-blue-200 to-violet-200">
       <NextSeo noindex nofollow />
       <Container>
-        <div className="flex h-full flex-1 items-center justify-evenly">
+        <div className="flex h-full flex-1 flex-col-reverse items-center justify-evenly gap-y-5 lg:flex-row">
           <Image
             src="/images/screen/404.png"
             width={400}

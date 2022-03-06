@@ -163,6 +163,9 @@ You can found all required environment variables on .env.local.example
 - [SWR](https://swr.vercel.app/)
 - [Heroicons](https://heroicons.com/)
 - Hero photo by [Štefan Štefančík (Unsplash)](https://unsplash.com/@cikstefan)
+- Laptop photo by [Kari Shea (Unsplash)](https://unsplash.com/@karishea)
+- 404 page photo by [whereslugo (Unsplash)](https://unsplash.com/@whereslugo)
+- 500 page photo by [Sammy Williams (Unsplash)](https://unsplash.com/@sammywilliams)
 
 ---
 
