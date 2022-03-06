@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         laptop: "url('/images/screen/laptop.png')",
+        confused: "url('/images/screen/500.png')",
       },
     },
     fontFamily: {
