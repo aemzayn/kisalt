@@ -4,6 +4,7 @@ export const HOME = process.env.NEXT_PUBLIC_HOME || ''
 export const META_IMAGE: string = 'images/meta/meta.jpg'
 export const META_ICON: string = `${HOME}images/favicon/android-icon-48x48.png`
 
+export const home: string = '/'
 export const dashboard: string = '/dashboard'
 export const login: string = '/login'
 export const signup: string = '/signup'

@@ -1,8 +1,8 @@
-import Layout from 'components/Layout/Layout'
+import { GetServerSidePropsContext } from 'next'
+import Error from 'next/error'
+
 import { Url } from 'interfaces/Url'
 import { supabase } from 'lib/supabaseClient'
-import { GetServerSidePropsContext } from 'next'
-import { NextSeo } from 'next-seo'
 
 export interface IGetServerSideProps {
   query: Url
@@ -42,10 +42,5 @@ export async function getServerSideProps({
 export type SlugPageProps = {}
 
 export default function SlugPage({}: SlugPageProps) {
-  return (
-    <Layout>
-      <NextSeo nofollow noindex />
-      <div>Not found</div>
-    </Layout>
-  )
+  return <Error statusCode={404} />
 }
