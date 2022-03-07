@@ -7,7 +7,7 @@ export type ResetPasswordProps = {}
 export default function ResetPassword({}: ResetPasswordProps) {
   return (
     <Layout>
-      <NextSeo title="Reset Password" nofollow noindex />
+      <NextSeo title="Reset Password" />
       <AuthResetPassword />
     </Layout>
   )

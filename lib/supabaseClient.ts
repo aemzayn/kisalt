@@ -1,7 +1,6 @@
 import { ApiError, createClient, Session, User } from '@supabase/supabase-js'
 import { EVENT_SIGN_OUT, LS_AUTH_TOKEN } from 'constants/common'
 import {
-  HOME,
   createNewUrlApi,
   deleteUrlApi,
   loginApi,
@@ -11,6 +10,7 @@ import {
   resetPasswordApi,
   setNewPasswordApi,
   setSessionApi,
+  redirect,
 } from 'constants/paths'
 import { defaultFetchOption, fetcherWithAuth } from './fetcher'
 
@@ -72,7 +72,7 @@ export async function loginWithGoogle() {
     {
       provider: 'google',
     },
-    { redirectTo: HOME }
+    { redirectTo: redirect }
   )
   return { user, session, error }
 }
@@ -102,6 +102,8 @@ export const setSession = async (event: string, session: Session | null) => {
 }
 
 export const sendResetEmail = async (email: string) => {
+  console.log(email)
+
   const res = await fetch(resetPasswordApi, {
     ...defaultFetchOption,
     method: 'POST',

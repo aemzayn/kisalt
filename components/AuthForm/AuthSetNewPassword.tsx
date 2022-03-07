@@ -4,7 +4,7 @@ import { FormikHelpers, Formik, Form, Field } from 'formik'
 
 import PageContainer from 'components/Container/PageContainer'
 import { setNewPassword } from 'lib/supabaseClient'
-import { resetPasswordValidationScheme } from 'lib/validations'
+import { setNewPasswordValidationScheme } from 'lib/validations'
 import { LS_FP_TOKEN } from 'constants/common'
 import { useAlertContext } from 'context/AlertContext'
 import { login } from 'constants/paths'
@@ -72,7 +72,7 @@ export default function AuthSetNewPassword({}: AuthSetNewPasswordProps) {
             password: '',
           }}
           onSubmit={handleSubmit}
-          validationSchema={resetPasswordValidationScheme}
+          validationSchema={setNewPasswordValidationScheme}
         >
           {({ errors, touched }) => (
             <Form className="mt-10 flex flex-col gap-5 rounded-lg bg-white p-5 shadow-lg md:p-10">
