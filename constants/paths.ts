@@ -12,6 +12,7 @@ export const register: string = '/register'
 export const about: string = '/about'
 export const resetPassword: string = '/reset-password'
 export const setNewPassword: string = '/set-new-password'
+export const redirect: string = `${HOME}callback`
 
 export const checkAuth: string = '/api/v1/auth/check-auth'
 export const loginApi: string = '/api/v1/auth/login'

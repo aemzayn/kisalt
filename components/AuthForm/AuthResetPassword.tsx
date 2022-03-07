@@ -5,6 +5,8 @@ import { FormikHelpers, Formik, Form, Field } from 'formik'
 import PageContainer from 'components/Container/PageContainer'
 import { sendResetEmail } from 'lib/supabaseClient'
 import { resetPasswordValidationScheme } from 'lib/validations'
+import { useAlertContext } from 'context/AlertContext'
+import Spinner from 'components/Spinner'
 
 type Values = {
   email: string
@@ -14,22 +16,38 @@ export type AuthResetPasswordProps = {}
 
 export default function AuthResetPassword({}: AuthResetPasswordProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { closeAlert, setAlert } = useAlertContext()
 
   const handleSubmit = async (
     { email }: Values,
     { resetForm, setErrors }: FormikHelpers<Values>
   ) => {
+    console.log('click')
+
     setIsSubmitting(true)
     const { error } = await sendResetEmail(email)
 
     if (error) {
-      setErrors({
-        email: error.message,
+      setAlert({
+        title: 'Error',
+        message: error,
+        type: 'error',
+        onClose: () => {
+          setIsSubmitting(false)
+          closeAlert()
+        },
+      })
+    } else {
+      setAlert({
+        title: 'Success',
+        message: 'Reset password link has been sent to your email.',
+        onClose: () => {
+          setIsSubmitting(false)
+          resetForm()
+          closeAlert()
+        },
       })
     }
-    setIsSubmitting(false)
-
-    !error && resetForm()
   }
 
   return (
@@ -74,6 +92,7 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
                 disabled={isSubmitting}
               >
                 Send email
+                {isSubmitting && <Spinner />}
               </button>
             </Form>
           )}
