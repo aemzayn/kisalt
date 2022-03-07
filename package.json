@@ -2,12 +2,13 @@
   "name": "kisalt",
   "description": "URL Shortener app",
   "private": true,
-  "version": "0.1",
+  "version": "1.0.0",
   "author": {
     "name": "Ahmad Muslih Zain",
     "email": "ahmad.muslih22@gmail.com",
     "url": "https://ahmadmuslih.space"
   },
+  "license": "Apache License",
   "scripts": {
     "dev": "next dev",
     "build": "NODE_ENV=production next build",
@@ -18,8 +19,7 @@
     "format": "prettier --write .",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
     "prepare": "husky install",
-    "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "lint": "next lint"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
