@@ -9,6 +9,7 @@ import ShortUrlList from './ShortUrlList'
 import NewUrlForm from './NewUrlForm'
 import Chart from 'components/Chart'
 import TopLinksList from './TopLinksList'
+import { sortUrls } from 'lib/urls'
 
 export type DashboardProps = {}
 
@@ -50,7 +51,7 @@ export default function Dashboard({}: DashboardProps) {
             ))}
 
           <Chart userId={user?.id} />
-          <TopLinksList data={urls} />
+          <TopLinksList data={sortUrls(urls)} />
 
           <NewUrlForm userId={user?.id} />
         </div>
