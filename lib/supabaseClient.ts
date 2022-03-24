@@ -102,8 +102,6 @@ export const setSession = async (event: string, session: Session | null) => {
 }
 
 export const sendResetEmail = async (email: string) => {
-  console.log(email)
-
   const res = await fetch(resetPasswordApi, {
     ...defaultFetchOption,
     method: 'POST',
