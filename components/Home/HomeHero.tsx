@@ -25,7 +25,7 @@ export default function HomeHero({}: HomeHeroProps) {
             </h1>
             <p className="max-w-[70%] font-medium leading-relaxed text-violet-500">
               Link Management Platform with all features you need in one place.
-              Shorten, brand, manage and track your links the easy way.
+              Shorten, manage and track your links the easy way.
             </p>
             <HeroInput />
           </div>

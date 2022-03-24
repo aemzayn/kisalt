@@ -74,11 +74,11 @@ export default function HeroInput({}: HeroInputProps) {
       >
         {({ errors, isSubmitting }) => (
           <>
-            <Form className="rounded-full bg-white py-2 px-3 ring-2 ring-violet-300">
+            <Form className="flex rounded-full bg-white py-2 px-3 ring-2 ring-violet-300">
               <Field
                 type="url"
                 name="realUrl"
-                className="rounded-full border-none bg-white placeholder:text-sm placeholder:text-violet-500"
+                className="flex-1 rounded-full border-none bg-white placeholder:text-sm placeholder:text-violet-500"
                 placeholder="Paste long link"
               />
               <button
