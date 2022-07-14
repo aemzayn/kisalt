@@ -12,6 +12,7 @@ export type AlertProps = {
 }
 
 export default function Alert({ alert, closeAlert }: AlertProps) {
+  console.log(alert)
   return (
     <div
       className={clsx(
@@ -33,7 +34,11 @@ export default function Alert({ alert, closeAlert }: AlertProps) {
           <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
         )}
       </h1>
-      <p className="text-slate-800">{alert.message}</p>
+      <p className="text-slate-800">
+        {typeof alert.message === 'object'
+          ? alert.message?.message
+          : alert.message}
+      </p>
       <div className="flex flex-col justify-center gap-2 md:flex-row lg:items-center lg:justify-evenly">
         {alert.closeText && (
           <button
