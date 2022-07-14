@@ -48,6 +48,7 @@ export default function ChangeSlugForm({
         mutate(getMyDashboardApi(user?.id))
       }
     } catch (error) {
+      console.error(error)
       setAlert({
         title: 'Cannot change the slug.',
         message: error,

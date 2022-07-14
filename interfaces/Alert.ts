@@ -2,7 +2,7 @@ export type AlertType = 'success' | 'warning' | 'error'
 
 export interface Alert {
   title: string
-  message: string
+  message: string | Error
   type?: AlertType
   confirmText?: string
   closeText?: string
