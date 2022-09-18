@@ -15,21 +15,18 @@ import useSWR from 'swr'
 import { getChartDataApi } from 'constants/paths'
 import { fetcherWithAuth } from 'lib/fetcher'
 import { ChartData } from 'interfaces/Dashboard'
+import { TableStyles } from 'interfaces/Table'
+import { shortMonthsMap } from 'lib/date'
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale)
 
-export type TableData = Array<{
-  date: string
-  clicks: number
-}>
+export const TABLE_STYLES: TableStyles = {
+  borderColor: '#e9d5ff',
+  lineColor: '#6d28d9',
+}
 
 export type TableProps = {
   userId: string
-}
-
-export const TABLE_STYLES: Record<string, string> = {
-  borderColor: '#e9d5ff',
-  lineColor: '#6d28d9',
 }
 
 export default function Chart({ userId }: TableProps) {
@@ -53,8 +50,16 @@ export default function Chart({ userId }: TableProps) {
     )
   }
   const data: ChartData[] = chartData && chartData.data
+  const labels: string[] = data?.map(formatLabel) || []
 
-  const labels: string[] = data?.map((d) => d.date) || []
+  function formatLabel(data: ChartData) {
+    const date = data.date
+    const [month, day] = date.split('/')
+    const shortMonth = shortMonthsMap[month]
+    const label = `${day} ${shortMonth}`
+    return label
+  }
+
   const datasets = [
     {
       label: 'Date',
@@ -70,8 +75,15 @@ export default function Chart({ userId }: TableProps) {
   const options: ChartOptions<'line'> = {
     responsive: true,
     plugins: {
-      tooltip: {
-        enabled: true,
+      tooltip: {},
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Total clicks in last 7 days',
+        position: 'top',
+        padding: {
+          bottom: 15,
+        },
       },
     },
     scales: {

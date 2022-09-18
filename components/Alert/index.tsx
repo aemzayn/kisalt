@@ -12,7 +12,6 @@ export type AlertProps = {
 }
 
 export default function Alert({ alert, closeAlert }: AlertProps) {
-  console.log(alert)
   return (
     <div
       className={clsx(

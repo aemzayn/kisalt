@@ -26,7 +26,7 @@ export default function Dashboard({}: DashboardProps) {
   const infos: InfoItemProps[] = data && [
     {
       count: urls ? urls.length : 0,
-      text: 'ALL URLS',
+      text: 'TOTAL URLS',
       Icon: LinkIcon,
     },
     {

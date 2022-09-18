@@ -1,3 +1,5 @@
+import { MonthIndex, ShortMonth } from 'interfaces/Date'
+
 export const _MS_PER_DAY: number = 1000 * 60 * 60 * 24
 
 export const getDayDifference = (date1: Date, date2: Date) => {
@@ -41,4 +43,19 @@ export const daysInMonth: Record<number, number> = {
   10: 31,
   11: 30,
   12: 31,
+}
+
+export const shortMonthsMap: Record<MonthIndex, ShortMonth> = {
+  1: 'Jan',
+  2: 'Feb',
+  3: 'Mar',
+  4: 'Apr',
+  5: 'May',
+  6: 'Jun',
+  7: 'Jul',
+  8: 'Aug',
+  9: 'Sep',
+  10: 'Oct',
+  11: 'Nov',
+  12: 'Dec',
 }

@@ -51,14 +51,14 @@ export default async function handler(
       dayIterator += 1
     }
 
-    res.json({
+    return res.json({
       data: thisWeekClicks.reverse(),
       error,
       success: !!data,
     })
   } catch (error) {
     res.statusCode = 500
-    res.json({
+    return res.json({
       error,
       success: false,
     })

@@ -22,8 +22,6 @@ export default function AuthResetPassword({}: AuthResetPasswordProps) {
     { email }: Values,
     { resetForm, setErrors }: FormikHelpers<Values>
   ) => {
-    console.log('click')
-
     setIsSubmitting(true)
     const { error } = await sendResetEmail(email)
 
