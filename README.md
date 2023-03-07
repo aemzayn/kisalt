@@ -169,4 +169,4 @@ You can found all required environment variables on .env.local.example
 
 ---
 
-Copyright ©️ 2022 by Ahmad Muslih Zain
+Copyright ©️ 2023 by Ahmad Muslih Zain
