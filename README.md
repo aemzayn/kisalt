@@ -143,7 +143,7 @@ Click **RUN** to execute the query
 
 ## Additional settings for Authentication
 
-- on Authentication setting, change Site URL to /callback. e.g: https://ksana.in/callback, for development just set it to http://localhost:3000/callback
+- on Authentication setting, change Site URL to /callback. e.g: https://kisalt.one/callback, for development just set it to http://localhost:3000/callback
 - To support Google Login, in Authentication setting page, set the Google Client ID and Google Secret
 - Increase JWT expiry time to 604800 for longer session. It's on on Authentication setting men
 
@@ -154,6 +154,10 @@ You can found all required environment variables on .env.local.example
 ## Credits
 
 - [Ksana.in](https://github.com/mazipan/ksana.in)
+- Hero photo by [Štefan Štefančík (Unsplash)](https://unsplash.com/@cikstefan)
+- Laptop photo by [Kari Shea (Unsplash)](https://unsplash.com/@karishea)
+- 404 page photo by [whereslugo (Unsplash)](https://unsplash.com/@whereslugo)
+- 500 page photo by [Sammy Williams (Unsplash)](https://unsplash.com/@sammywilliams)
 
 ## Stack used
 
@@ -162,10 +166,6 @@ You can found all required environment variables on .env.local.example
 - [Tailwind CSS](https://tailwindcss.com/)
 - [SWR](https://swr.vercel.app/)
 - [Heroicons](https://heroicons.com/)
-- Hero photo by [Štefan Štefančík (Unsplash)](https://unsplash.com/@cikstefan)
-- Laptop photo by [Kari Shea (Unsplash)](https://unsplash.com/@karishea)
-- 404 page photo by [whereslugo (Unsplash)](https://unsplash.com/@whereslugo)
-- 500 page photo by [Sammy Williams (Unsplash)](https://unsplash.com/@sammywilliams)
 
 ---
 
