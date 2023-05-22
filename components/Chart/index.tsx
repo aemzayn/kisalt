@@ -75,8 +75,9 @@ export default function Chart({ userId }: TableProps) {
   const options: ChartOptions<'line'> = {
     responsive: true,
     plugins: {
-      tooltip: {},
-      legend: { display: false },
+      legend: {
+        display: false,
+      },
       title: {
         display: true,
         text: 'Total clicks in last 7 days',
@@ -89,7 +90,7 @@ export default function Chart({ userId }: TableProps) {
     scales: {
       y: {
         ticks: {
-          stepSize: 1,
+          stepSize: 2,
         },
         title: {
           text: 'Total Clicks',
@@ -99,7 +100,7 @@ export default function Chart({ userId }: TableProps) {
           borderColor: TABLE_STYLES.borderColor,
           borderWidth: 1,
         },
-        min: 0,
+        min: -1,
       },
       x: {
         title: {
