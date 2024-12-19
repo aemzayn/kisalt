@@ -97,10 +97,9 @@ export default function Chart({ userId }: TableProps) {
           display: true,
         },
         grid: {
-          borderColor: TABLE_STYLES.borderColor,
-          borderWidth: 1,
+          color: TABLE_STYLES.borderColor,
         },
-        min: -1,
+        min: 0,
       },
       x: {
         title: {
