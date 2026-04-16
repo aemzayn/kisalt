@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   ClipboardCopyIcon,
   PencilIcon,
+  QrcodeIcon,
   TrashIcon,
 } from '@heroicons/react/solid'
 
@@ -12,6 +13,7 @@ import { User } from 'interfaces/User'
 import { copyToClipboard } from 'lib/string'
 import { deleteUrl } from 'lib/supabaseClient'
 import ChangeSlugForm from './ChangeSlugForm'
+import QRCodeModal from './QRCodeModal'
 import { mutate } from 'swr'
 
 export type LinkItemProps = {
@@ -21,6 +23,7 @@ export type LinkItemProps = {
 
 const LinkItem = ({ url, user }: LinkItemProps) => {
   const [editMode, setEditMode] = useState<boolean>(false)
+  const [showQRCode, setShowQRCode] = useState<boolean>(false)
   const { setAlert, closeAlert } = useAlertContext()
 
   const closeEditMode = () => {
@@ -88,6 +91,13 @@ const LinkItem = ({ url, user }: LinkItemProps) => {
           <ClipboardCopyIcon className="h-4 w-4 text-violet-800" />
         </button>
         <button
+          onClick={() => setShowQRCode(true)}
+          className="rounded-full p-1 duration-150 hover:bg-gray-200"
+          aria-label="Show QR Code"
+        >
+          <QrcodeIcon className="h-4 w-4 text-violet-800" />
+        </button>
+        <button
           onClick={() => setEditMode(true)}
           className="rounded-full p-1 duration-150 hover:bg-gray-200 "
         >
@@ -100,6 +110,14 @@ const LinkItem = ({ url, user }: LinkItemProps) => {
           <TrashIcon className="h-4 w-4 text-violet-800" />
         </button>
       </div>
+
+      {showQRCode && (
+        <QRCodeModal
+          url={`${HOME}${url.slug}`}
+          slug={url.slug}
+          onClose={() => setShowQRCode(false)}
+        />
+      )}
     </div>
   )
 }
